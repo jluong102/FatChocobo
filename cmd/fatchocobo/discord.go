@@ -1,9 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
-	"encoding/json"
 	"net/http"
 )
 
@@ -15,7 +15,7 @@ const DISCORD_URL string = "https://discord.com/api"
 
 type Discord struct {
 	Websocket *websocket.Conn
-	token string
+	token     string
 }
 
 // HTTP Responses
@@ -31,6 +31,14 @@ type SessionStartLimitObject struct {
 	Remaining      int `json:"remaining"`
 	ResetAfter     int `json:"reset_after"`
 	MaxConcurrency int `json:"max_concurrency"`
+}
+
+// Gateway stuff
+type GatewayEventPayload struct {
+	Op int         `json:"op"` // Gateway Opcode
+	D  interface{} `json:"d"`  // Event Data
+	S  int         `json:"s"`  // Sequence number
+	T  string      `json:"t"`  // Event name
 }
 
 // HTTP Requests

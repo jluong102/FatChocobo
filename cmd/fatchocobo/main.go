@@ -105,7 +105,7 @@ func initDiscord(discord *Discord) {
 		} else {
 			log.Printf("Connected to %s", gateway.Url)
 		}
-	} 
+	}
 }
 
 func main() {
