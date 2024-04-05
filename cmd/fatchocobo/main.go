@@ -92,4 +92,7 @@ func main() {
 	checkArgs(cmdline)
 	loadSettings(cmdline.Config, settings)
 	checkSettings(settings)
+
+	discord := CreateDiscord(settings.Token)
+	log.Printf("Init Discord: %p", discord)
 }
