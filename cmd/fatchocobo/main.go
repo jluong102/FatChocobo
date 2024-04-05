@@ -94,5 +94,7 @@ func main() {
 	checkSettings(settings)
 
 	discord := CreateDiscord(settings.Token)
-	log.Printf("Init Discord: %p", discord)
+	gateway, err := GetDiscordGatewayBot(discord)	
+
+	log.Printf("Gateway: %s", gateway.Url)
 }

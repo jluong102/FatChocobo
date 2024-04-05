@@ -1,8 +1,9 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
+	"io"
+	"encoding/json"
 	"net/http"
 )
 
@@ -43,7 +44,7 @@ func (this Discord) GetGatewayBot() (*http.Response, error) {
 // General HTTP request for discord]
 func (this Discord) MakeRequest(request *http.Request) (*http.Response, error) {
 	request.Header["Authorization"] = []string{fmt.Sprintf("Bot %s", this.token)}
-	request.Header[""] = []string{"DiscordBot (Fat Chocobo, 0)"}
+	request.Header["User-Agent"] = []string{"DiscordBot (Fat Chocobo, 0)"}
 
 	client := http.Client{}
 	return client.Do(request)
@@ -55,4 +56,23 @@ func CreateDiscord(token string) *Discord {
 	discord.token = token
 
 	return discord
+}
+
+// Parsing through HTTP respones
+func GetDiscordGatewayBot(discord *Discord) (*GatewayBotResponse, error) {
+	data := new(GatewayBotResponse)
+
+	response, err := discord.GetGatewayBot()
+
+	if err != nil {
+		return nil, err
+	} else if response.StatusCode != 200 {
+		return nil, fmt.Errorf("Bad status code: %s", response.Status)
+	}
+
+	raw, _ := io.ReadAll(response.Body)
+	err = json.Unmarshal(raw, data)
+	defer response.Body.Close()
+
+	return data, err
 }
