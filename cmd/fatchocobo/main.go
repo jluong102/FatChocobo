@@ -39,6 +39,20 @@ func printVersion() {
 	os.Exit(NO_ERROR)
 }
 
+func printArt() {
+	log.Printf("	　　　／\"'￣フ／)　　　　       、")
+	log.Printf("　　,/ ,--、 ￣､__フ　　　　 ／/      ")
+	log.Printf("　 ,ヘｌ⌒ﾉ 　　＞　　　　,／　/＿	  ")
+	log.Printf("　( ＿l_\"_ニ_　く＿　 ／）　／　／    ")
+	log.Printf("　 ゛　,＞　　　　　 フ､　　　　､､＞  ")
+	log.Printf("　　 <\"　（　　　　　　フ　_＿＞      ")
+	log.Printf("　　　ヽ　 ＼､､　＿フ' ノ             ")
+	log.Printf("　　　　＼、＿＿､､,_ノ゛			  ")
+	log.Printf("　　　　　 　　 〉ﾆ〉ﾆ〉              ")
+	log.Printf("　　　　 　 ,､_/ﾆ/ﾆ/                  ")
+	log.Printf("　　　　　∠ｌ∠ｌ､ニ＞                 ")
+}
+
 // Load in cmdline args from stdin
 func setArgs(cmdline *Cmdline) {
 	flag.BoolVar(&cmdline.Version, "version", false, "Print current version")
@@ -103,6 +117,7 @@ func main() {
 		printVersion()
 	}
 
+	printArt()
 	checkArgs(cmdline)
 	loadSettings(cmdline.Config, settings)
 	checkSettings(settings)
