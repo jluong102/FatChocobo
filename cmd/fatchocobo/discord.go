@@ -1,14 +1,30 @@
 package main
 
 import (
-	"net/http"
+	"encoding/json"
 	"fmt"
+	"net/http"
 )
 
 const DISCORD_URL string = "https://discord.com/api"
 
 type Discord struct {
 	token string
+}
+
+// HTTP Responses
+type GatewayBotResponse struct {
+	Url               string                  `json:"url"`
+	Shards            int                     `json:"shards"`
+	SessionStartLimit SessionStartLimitObject `json:"session_start_limit"`
+}
+
+// Discord JSON sub-objects
+type SessionStartLimitObject struct {
+	Total          int `json:"total"`
+	Remaining      int `json:"remaining"`
+	ResetAfter     int `json:"reset_after"`
+	MaxConcurrency int `json:"max_concurrency"`
 }
 
 // HTTP Requests
@@ -33,7 +49,7 @@ func (this Discord) MakeRequest(request *http.Request) (*http.Response, error) {
 	return client.Do(request)
 }
 
-// Constructor 
+// Constructor
 func CreateDiscord(token string) *Discord {
 	discord := new(Discord)
 	discord.token = token
