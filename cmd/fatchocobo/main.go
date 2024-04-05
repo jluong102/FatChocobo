@@ -80,6 +80,20 @@ func checkSettings(settings *Settings) {
 	}
 }
 
+func initDiscord(discord *Discord) {
+	if gateway, err := GetDiscordGatewayBot(discord); err != nil {
+		log.Printf("Failed to get discord gateway\n\tError: %s")
+		os.Exit(GATEWAY_ERROR)
+	} else {
+		if discord.Websocket, err = CreateWebsocketConnection(gateway.Url, nil); err != nil {
+			log.Printf("Failed to connect to websocket\n\tError: %s", err)
+			os.Exit(WEBSOCKET_CONNECTION_ERROR)
+		} else {
+			log.Printf("Connected to %s", gateway.Url)
+		}
+	} 
+}
+
 func main() {
 	settings := new(Settings)
 	cmdline := new(Cmdline)
@@ -94,7 +108,5 @@ func main() {
 	checkSettings(settings)
 
 	discord := CreateDiscord(settings.Token)
-	gateway, err := GetDiscordGatewayBot(discord)	
-
-	log.Printf("Gateway: %s", gateway.Url)
+	initDiscord(discord)
 }

@@ -7,9 +7,14 @@ import (
 	"net/http"
 )
 
+import (
+	"github.com/gorilla/websocket"
+)
+
 const DISCORD_URL string = "https://discord.com/api"
 
 type Discord struct {
+	Websocket *websocket.Conn
 	token string
 }
 
