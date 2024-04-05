@@ -17,8 +17,8 @@ func CreateWebsocketConnection(url string, headers http.Header) (*websocket.Conn
 }
 
 func ListenWebSocket(ws *websocket.Conn) {
-	data := new(GatewayEventPayload) 
-	
+	data := new(GatewayEventPayload)
+
 	if err := ws.ReadJSON(data); err != nil {
 		log.Printf("Trouble reading from websocket\n\tError: %s")
 	}
