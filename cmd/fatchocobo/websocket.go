@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 )
 
@@ -16,5 +17,14 @@ func CreateWebsocketConnection(url string, headers http.Header) (*websocket.Conn
 }
 
 func ListenWebSocket(ws *websocket.Conn) {
-	ws.ReadJSON()
+	data := new(GatewayEventPayload) 
+	
+	if err := ws.ReadJSON(data); err != nil {
+		log.Printf("Trouble reading from websocket\n\tError: %s")
+	}
+
+	log.Printf("op -> %d", data.Op)
+	log.Printf("d -> %s", data.D)
+	log.Printf("s -> %d", data.S)
+	log.Printf("t -> %s", data.T)
 }
