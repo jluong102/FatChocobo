@@ -13,6 +13,21 @@ import (
 
 const DISCORD_URL string = "https://discord.com/api"
 
+// Gateway Opcodes
+const (
+	GATEWAY_DISPATCH              = 0
+	GATEWAY_HEARTBEAT             = 1
+	GATEWAY_IDENTIFY              = 2
+	GATEWAY_PRESENCE_UPDATE       = 3
+	GATEWAY_VOICE_STATE_UPDATE    = 4
+	GATEWAY_RESUME                = 6
+	GATEWAY_RECONNECT             = 7
+	GATEWAY_REQUEST_GUILD_MEMBERS = 8
+	GATEWAY_INVALID_SESSION       = 9
+	GATEWAY_HELLO                 = 10
+	GATEWAY_HEARTBEAT_ACK         = 11
+)
+
 type Discord struct {
 	Websocket *websocket.Conn
 	token     string
