@@ -11,6 +11,7 @@ import (
 	"flag"
 	"os"
 	"fmt"
+	"flag"
 )
 
 // Everything loaded in from config file
@@ -45,11 +46,35 @@ func setArgs(cmdline *Cmdline) {
 	flag.Parse()
 }
 
+func chcekArgs(cmdline *Cmdline) {
+
+}
+
+// Read in from config file
+func loadSettings(configPath string, settings *Settings) {
+	// Confirm valid config file path 
+	if _, err := os.Stat(configPath); err != nil {
+		log.Printf("Unable to find config file\nError: %s", err)
+		os.Exit(MISSING_CONFIG_FILE)
+	}	
+
+	content, err := os.ReadFile(config)
+
+	if err != nil {
+		log.Printf("Failed to read from %s\n%s", configPath, err)
+		os.Exit(FILE_READ_ERROR)
+	}
+}
+
 func main() {
+	settings := new(Settings)
 	cmdline := new(Cmdline)
 	setArgs(cmdline)
 
 	if cmdline.Version {
 		printVersion()
 	}
+
+	checkArgs(cmdline)
+	loadSettings(cmdline.Config, settings)
 }
