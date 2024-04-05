@@ -22,7 +22,7 @@ func ListenWebSocket(ws *websocket.Conn) {
 	if err := ws.ReadJSON(data); err != nil {
 		log.Printf("Trouble reading from websocket\n\tError: %s")
 	}
-
+	
 	log.Printf("op -> %d", data.Op)
 	log.Printf("d -> %s", data.D)
 	log.Printf("s -> %d", data.S)
