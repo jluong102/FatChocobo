@@ -1,17 +1,18 @@
 /*
  * Fat Chocobo is discord bot that does random
  * things solely based on things that I find to
- * be intresting at the time.  This bot has no 
+ * be intresting at the time.  This bot has no
  * real purpose outside of that.
  */
 
 package main
 
 import (
+	"encoding/json"
 	"flag"
-	"os"
 	"fmt"
-	"flag"
+	"log"
+	"os"
 )
 
 // Everything loaded in from config file
@@ -21,7 +22,7 @@ type Settings struct {
 
 // Everything load in from cmdline
 type Cmdline struct {
-	Config string 
+	Config  string
 	Version bool
 }
 
@@ -41,28 +42,41 @@ func printVersion() {
 // Load in cmdline args from stdin
 func setArgs(cmdline *Cmdline) {
 	flag.BoolVar(&cmdline.Version, "version", false, "Print current version")
-	flag.StringVar(&cmdline.Config, "config", "./config.json", "Config file to use") 
+	flag.StringVar(&cmdline.Config, "config", "./config.json", "Config file to use")
 
 	flag.Parse()
 }
 
-func chcekArgs(cmdline *Cmdline) {
+func checkArgs(cmdline *Cmdline) {
 
 }
 
 // Read in from config file
 func loadSettings(configPath string, settings *Settings) {
-	// Confirm valid config file path 
+	// Confirm valid config file path
 	if _, err := os.Stat(configPath); err != nil {
-		log.Printf("Unable to find config file\nError: %s", err)
+		log.Printf("Unable to find config file\n\tError: %s", err)
 		os.Exit(MISSING_CONFIG_FILE)
-	}	
+	}
 
-	content, err := os.ReadFile(config)
+	content, err := os.ReadFile(configPath)
 
 	if err != nil {
-		log.Printf("Failed to read from %s\n%s", configPath, err)
+		log.Printf("Failed to read from %s\n\tError: %s", configPath, err)
 		os.Exit(FILE_READ_ERROR)
+	}
+
+	if err := json.Unmarshal(content, settings); err != nil {
+		log.Printf("Unable to parse json from %s\n\tError: %s", configPath, err)
+		os.Exit(JSON_PARSE_ERROR)
+	}
+}
+
+// Make sure we have all the settings we need
+func checkSettings(settings *Settings) {
+	if settings.Token == "" {
+		log.Printf("Missing settings \"token\" in config")
+		os.Exit(MISSING_SETTING)
 	}
 }
 
@@ -77,4 +91,5 @@ func main() {
 
 	checkArgs(cmdline)
 	loadSettings(cmdline.Config, settings)
+	checkSettings(settings)
 }
