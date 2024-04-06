@@ -96,7 +96,7 @@ func checkSettings(settings *Settings) {
 
 func initDiscord(discord *Discord) {
 	if gateway, err := GetDiscordGatewayBot(discord); err != nil {
-		log.Printf("Failed to get discord gateway\n\tError: %s")
+		log.Printf("Failed to get discord gateway\n\tError: %s", err)
 		os.Exit(GATEWAY_ERROR)
 	} else {
 		if discord.Websocket, err = CreateWebsocketConnection(gateway.Url, nil); err != nil {
