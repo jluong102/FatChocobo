@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io"
-	"time"
 	"net/http"
 	"encoding/json"
 )
@@ -342,13 +341,6 @@ func (this Discord) SendHeartbeat(seq int) {
 	}
 
 	this.Websocket.WriteJSON(payload)
-}
-
-func (this Discord) SendHeartbeatEndless(seq int) {
-	for {
-		this.SendHeartbeat(seq)
-		time.Sleep(time.Duration(this.Heartbeat) * time.Millisecond - 100)
-	}
 }
 
 // Constructor

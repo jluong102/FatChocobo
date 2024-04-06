@@ -2,11 +2,13 @@ package main
 
 import (
 	"log"
+	"time"
 )
 
 func StartBot(discord *Discord) {
 	log.Printf("Starting bot...")
 	output := make(chan *GatewayEventPayload)
+	sendingHeartbeats := false
 
 	go ListenWebsocket(discord.Websocket, output)
 
@@ -24,7 +26,14 @@ func StartBot(discord *Discord) {
 
 				log.Printf("Heartbeat interval: %d", payload.HeartbeatInterval)
 				discord.Heartbeat = payload.HeartbeatInterval
-				go discord.SendHeartbeatEndless(data.S)
+
+				if !sendingHeartbeats {
+					go sendEndlessHeartbeats(discord, data.S)
+				} else {
+					log.Printf("Already sending heartbeats")
+				}
+
+				sendingHeartbeats = true
 			case GATEWAY_OPCODE_HEARTBEAT_ACK:
 				log.Printf("Heartbeat acknowledged")
 			default:
@@ -33,3 +42,10 @@ func StartBot(discord *Discord) {
 	}
 }
 
+func sendEndlessHeartbeats(discord *Discord, seq int) {
+	for {
+		log.Printf("Sending heartbeat")
+		discord.SendHeartbeat(seq)
+		time.Sleep(time.Duration(discord.Heartbeat) * time.Millisecond - 100)
+	}
+}
