@@ -46,6 +46,29 @@ const (
 	GATEWAY_CLOSE_DISALLOWED_INTENT     = 4014
 )
 
+// Gateway Intents
+const (
+	GATEWAY_INTENT_GUILDS                        = 1 << 0
+	GATEWAY_INTENT_GUILD_MEMBERS                 = 1 << 1
+	GATEWAY_INTENT_GUILD_MODERATION              = 1 << 2
+	GATEWAY_INTENT_GUILD_EMOJIS_AND_STICKERS     = 1 << 3
+	GATEWAY_INTENT_GUILD_INTEGRATIONS            = 1 << 4
+	GATEWAY_INTENT_GUILD_WEBHOOKS                = 1 << 5
+	GATEWAY_INTENT_GUILD_INVITES                 = 1 << 6
+	GATEWAY_INTENT_GUILD_VOICE_STATES            = 1 << 7
+	GATEWAY_INTENT_GUILD_PRESENCES               = 1 << 8
+	GATEWAY_INTENT_GUILD_MESSAGES                = 1 << 9
+	GATEWAY_INTENT_GUILD_MESSAGE_REACTIONS       = 1 << 10
+	GATEWAY_INTENT_GUILD_MESSAGE_TYPING          = 1 << 11
+	GATEWAY_INTENT_DIRECT_MESSAGES               = 1 << 12
+	GATEWAY_INTENT_DIRECT_MESSAGE_REACTIONS      = 1 << 13
+	GATEWAY_INTENT_DIRECT_MESSAGE_TYPES          = 1 << 14
+	GATEWAY_INTENT_MESSAGE_CONTENT               = 1 << 15
+	GATEWAY_INTENT_GUILD_SCHEDULED_EVENTS        = 1 << 16
+	GATEWAY_INTENT_AUTO_MODERATION_CONFIGURATION = 1 << 20
+	GATEWAY_INTENT_AUTO_MODERATION_EXECUTION     = 1 << 21
+)
+
 // User Flags
 const (
 	USER_FLAG_STAFF                    = 1 << 0
@@ -340,7 +363,7 @@ type ActivityObject struct {
 	Secrets       ActivitySecretsObject    `json:"secrets,omitempty"`
 	Instance      bool                     `json:"instance,omitempty"`
 	Flags         int                      `json:"flags,omitempty"`
-	Buttons       []ActivityButtonsObject           `json:"buttons,omitempty"`
+	Buttons       []ActivityButtonsObject  `json:"buttons,omitempty"`
 }
 
 type ActivityTimestampsObject struct {
