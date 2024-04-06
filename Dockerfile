@@ -14,4 +14,4 @@ RUN apt install -y curl # To avoid x509 errors
 WORKDIR /pkg
 RUN make
 
-CMD [".fatchocobo"]
+CMD ["./fatchocobo"]
