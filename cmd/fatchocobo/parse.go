@@ -28,7 +28,25 @@ func ParseOpHelloEvent(data interface{}) *HelloEvent {
 
 	if err != nil {
 		log.Printf("Failed to parse JSON\n\t%s", err)
+		return nil
 	}
 
+	return output
+}
+
+func ParseOpReadyEvent(data interface{}) *ReadyEvent {
+	encoded, err := json.Marshal(data)
+
+	if err != nil {
+		log.Printf("Failed to encode data to JSON\n\t%s", err)
+	}
+
+	output := new(ReadyEvent)
+	err = json.Unmarshal(encoded, output)
+
+	if err != nil {
+		log.Printf("Failed to parse JSON\n\t%s", err)
+		return nil
+	}
 	return output
 }

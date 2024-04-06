@@ -127,7 +127,7 @@ type Discord struct {
 	token     string
 }
 
-type Snowflake int64
+type Snowflake string
 
 // HTTP Responses
 type GatewayBotResponse struct {
@@ -416,7 +416,7 @@ type ReadyEvent struct {
 	V                int                      `json:"v"`
 	User             UserObject               `json:"user"`
 	Guilds           []UnavailableGuildObject `json:"guilds"`
-	Session          string                   `json:"session"`
+	SessionId        string                   `json:"session_id"`
 	ResumeGatewayUrl string                   `json:"resume_gateway_url"`
 	Shard            []int                    `json:"shard"`
 	Application      ApplicationObject        `json:"application"`
