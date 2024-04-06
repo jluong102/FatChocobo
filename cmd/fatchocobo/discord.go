@@ -461,10 +461,15 @@ func (this Discord) InitGatewayHandshake(intents int) {
 		Device: "Fat Chocobo",
 	}
 
-	payload := &IdentifyObject{
+	data := &IdentifyObject{
 		Token: this.token,
 		Properties: connectionProperties,
 		Intents: intents,
+	}
+
+	payload := &GatewayEventPayload{
+		Op: GATEWAY_OPCODE_IDENTIFY,
+		D: data,
 	}
 
 	this.Websocket.WriteJSON(payload)
