@@ -16,5 +16,8 @@ func StartBot(discord *Discord) {
 		log.Printf("d -> %s", data.D)
 		log.Printf("s -> %d", data.S)
 		log.Printf("t -> %s", data.T)
+
+		payload := ParseOpHelloEvent(data.D)
+		log.Printf("heartbeat -> %d", payload.HeartbeatInterval)
 	}
 }

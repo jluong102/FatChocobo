@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"encoding/json"
 )
 
 /*
@@ -14,12 +15,20 @@ import (
  * can convert directly from the interface.
  */
 
-func ParseOpHelloEvent(data interface{}) *HelloEvent {
-	output, ok := data.(HelloEvent)
+func ParseOpHelloEvent(data map[string]interface{}) *HelloEvent {
+	encoded, err := json.Marshal(data)
 
-	if !ok {
-		log.Printf("Failed to convert to \"HelloEvent\"")
+	if err != nil {
+		log.Printf("Failed to encode data to JSON\n\t%s", err)
+		return nil
 	}
 
-	return &output
+	output := new(HelloEvent)
+	err = json.Unmarshal(encoded, output)
+
+	if err != nil {
+		log.Printf("Failed to parse JSON\n\t%s", err)
+	}
+
+	return output
 }
