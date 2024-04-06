@@ -1,8 +1,8 @@
 package main
 
 import (
-	"log"
 	"encoding/json"
+	"log"
 )
 
 /*
@@ -15,7 +15,7 @@ import (
  * can convert directly from the interface.
  */
 
-func ParseOpHelloEvent(data map[string]interface{}) *HelloEvent {
+func ParseOpHelloEvent(data interface{}) *HelloEvent {
 	encoded, err := json.Marshal(data)
 
 	if err != nil {

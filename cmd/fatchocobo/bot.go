@@ -13,7 +13,6 @@ func StartBot(discord *Discord) {
 	for {
 		data := <-output
 		log.Printf("op -> %d", data.Op)
-		log.Printf("d -> %s", data.D)
 		log.Printf("s -> %d", data.S)
 		log.Printf("t -> %s", data.T)
 

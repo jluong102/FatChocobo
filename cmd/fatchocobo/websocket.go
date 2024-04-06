@@ -23,7 +23,7 @@ func ListenWebsocket(ws *websocket.Conn, output chan<- *GatewayEventPayload) {
 		if err := ws.ReadJSON(data); err != nil {
 			log.Printf("Trouble reading from websocket\n\tError: %s")
 		}
-		
+
 		output <- data
 	}
 }
