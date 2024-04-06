@@ -1,10 +1,11 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
+	"time"
 	"net/http"
+	"encoding/json"
 )
 
 import (
@@ -87,6 +88,7 @@ const (
 
 type Discord struct {
 	Websocket *websocket.Conn
+	Heartbeat int
 	token     string
 }
 
@@ -330,6 +332,23 @@ func (this Discord) MakeRequest(request *http.Request) (*http.Response, error) {
 
 	client := http.Client{}
 	return client.Do(request)
+}
+
+// Send websocket events
+func (this Discord) SendHeartbeat(seq int) {
+	payload := &GatewayEventPayload{
+		Op:  GATEWAY_OPCODE_HEARTBEAT,
+		D: seq,
+	}
+
+	this.Websocket.WriteJSON(payload)
+}
+
+func (this Discord) SendHeartbeatEndless(seq int) {
+	for {
+		this.SendHeartbeat(seq)
+		time.Sleep(time.Duration(this.Heartbeat) * time.Millisecond - 100)
+	}
 }
 
 // Constructor

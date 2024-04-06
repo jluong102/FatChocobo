@@ -40,7 +40,7 @@ func printVersion() {
 }
 
 func printArt() {
-	log.Printf("	　　　／\"'￣フ／)　　　　       、")
+	log.Printf("	　　　／\"'￣フ／)　　　　        ")
 	log.Printf("　　,/ ,--、 ￣､__フ　　　　 ／/      ")
 	log.Printf("　 ,ヘｌ⌒ﾉ 　　＞　　　　,／　/＿	  ")
 	log.Printf("　( ＿l_\"_ニ_　く＿　 ／）　／　／    ")
