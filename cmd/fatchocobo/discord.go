@@ -1,10 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
-	"encoding/json"
 )
 
 import (
@@ -336,8 +336,8 @@ func (this Discord) MakeRequest(request *http.Request) (*http.Response, error) {
 // Send websocket events
 func (this Discord) SendHeartbeat(seq int) {
 	payload := &GatewayEventPayload{
-		Op:  GATEWAY_OPCODE_HEARTBEAT,
-		D: seq,
+		Op: GATEWAY_OPCODE_HEARTBEAT,
+		D:  seq,
 	}
 
 	this.Websocket.WriteJSON(payload)
