@@ -26,6 +26,7 @@ func StartBot(discord *Discord) {
 
 			if !sendingHeartbeats {
 				go sendEndlessHeartbeats(discord, data.S)
+				discord.InitGatewayHandshake(GATEWAY_INTENT_GUILD_MESSAGES)
 			} else {
 				log.Printf("Already sending heartbeats")
 			}
@@ -39,10 +40,16 @@ func StartBot(discord *Discord) {
 	}
 }
 
+// Auto send heartbeats back before it expires.
+// This should be run as a goroutine only.
 func sendEndlessHeartbeats(discord *Discord, seq int) {
 	for {
 		log.Printf("Sending heartbeat")
 		discord.SendHeartbeat(seq)
 		time.Sleep(time.Duration(discord.Heartbeat)*time.Millisecond - 100)
 	}
+}
+
+func initGatewayHandshake(discord *Discord) {
+
 }

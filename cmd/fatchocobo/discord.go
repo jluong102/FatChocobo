@@ -454,6 +454,22 @@ func (this Discord) SendHeartbeat(seq int) {
 	this.Websocket.WriteJSON(payload)
 }
 
+func (this Discord) InitGatewayHandshake(intents int) {
+	connectionProperties := IdentifyConnectionPropertiesObject{
+		Os: "linux",
+		Browser: "Fat Chocobo",
+		Device: "Fat Chocobo",
+	}
+
+	payload := &IdentifyObject{
+		Token: this.token,
+		Properties: connectionProperties,
+		Intents: intents,
+	}
+
+	this.Websocket.WriteJSON(payload)
+}
+
 // Constructor
 func CreateDiscord(token string) *Discord {
 	discord := new(Discord)
