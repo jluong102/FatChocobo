@@ -456,20 +456,20 @@ func (this Discord) SendHeartbeat(seq int) {
 
 func (this Discord) InitGatewayHandshake(intents int) {
 	connectionProperties := IdentifyConnectionPropertiesObject{
-		Os: "linux",
+		Os:      "linux",
 		Browser: "Fat Chocobo",
-		Device: "Fat Chocobo",
+		Device:  "Fat Chocobo",
 	}
 
 	data := &IdentifyObject{
-		Token: this.token,
+		Token:      this.token,
 		Properties: connectionProperties,
-		Intents: intents,
+		Intents:    intents,
 	}
 
 	payload := &GatewayEventPayload{
 		Op: GATEWAY_OPCODE_IDENTIFY,
-		D: data,
+		D:  data,
 	}
 
 	this.Websocket.WriteJSON(payload)

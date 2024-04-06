@@ -13,30 +13,32 @@ func StartBot(discord *Discord) {
 	go ListenWebsocket(discord.Websocket, output)
 
 	for {
-		data := <-output
+		handleGatewayEvent(<-output)
+	}
+}
 
-		// Handle event based on OPCODE
-		switch data.Op {
-		case GATEWAY_OPCODE_HELLO:
-			log.Printf("Hello event received")
-			payload := ParseOpHelloEvent(data.D)
+func handleGatewayEvent(discord *Discord, data *GatewayEventPayload) {
+	// Handle event based on OPCODE
+	switch data.Op {
+	case GATEWAY_OPCODE_HELLO:
+		log.Printf("Hello event received")
+		payload := ParseOpHelloEvent(data.D)
 
-			log.Printf("Heartbeat interval: %d", payload.HeartbeatInterval)
-			discord.Heartbeat = payload.HeartbeatInterval
+		log.Printf("Heartbeat interval: %d", payload.HeartbeatInterval)
+		discord.Heartbeat = payload.HeartbeatInterval
 
-			if !sendingHeartbeats {
-				go sendEndlessHeartbeats(discord, data.S)
-				discord.InitGatewayHandshake(GATEWAY_INTENT_GUILD_MESSAGES)
-			} else {
-				log.Printf("Already sending heartbeats")
-			}
-
-			sendingHeartbeats = true
-		case GATEWAY_OPCODE_HEARTBEAT_ACK:
-			log.Printf("Heartbeat acknowledged")
-		default:
-			log.Printf("Unknown Opcode: %d", data.Op)
+		if !sendingHeartbeats {
+			go sendEndlessHeartbeats(discord, data.S)
+			discord.InitGatewayHandshake(GATEWAY_INTENT_GUILD_MESSAGES)
+		} else {
+			log.Printf("Already sending heartbeats")
 		}
+
+		sendingHeartbeats = true
+	case GATEWAY_OPCODE_HEARTBEAT_ACK:
+		log.Printf("Heartbeat acknowledged")
+	default:
+		log.Printf("Unknown Opcode: %d", data.Op)
 	}
 }
 
