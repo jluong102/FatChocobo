@@ -65,6 +65,19 @@ const (
 	USER_FLAG_ACTIVE_DEVELOPER         = 1 << 22
 )
 
+// Activity Flags
+const (
+	ACTIVITY_FLAG_INSTANCE              = 1 << 0
+	ACTIVITY_FLAG_JOIN                  = 1 << 1
+	ACTIVITY_FLAG_SPECTATE              = 1 << 2
+	ACTIVITY_FLAG_JOIN_REQUEST          = 1 << 3
+	ACTIVITY_FLAG_SYNC                  = 1 << 4
+	ACTIVITY_FLAG_PLAY                  = 1 << 5
+	ACTIVITY_FLAG_PARTY_PRIVACY_FRIENDS = 1 << 6
+	ACTIVITY_FLAG_PRIVACY_VOICE_CHANNEL = 1 << 7
+	ACTIVITY_FLAG_EMBEDDED              = 1 << 8
+)
+
 // Premium types
 const (
 	PREMIUM_TYPES_NONE          = 0
@@ -287,6 +300,81 @@ type StickerObject struct {
 type InstallParamsObject struct {
 	Scopes       []string `json:"scopes"`
 	Permissiosns string   `json:"permissions"`
+}
+
+type IdentifyObject struct {
+	Token          string                             `json:"token"`
+	Properties     IdentifyConnectionPropertiesObject `json:"properties"`
+	Compress       bool                               `json:"compress,omitempty"`
+	LargeThreshold int                                `json:"large_threshold"`
+	Shard          []int                              `json:"shard,omitempty"`
+	Presence       UpdatePresenceObject               `json:"presence,omitempty"`
+	Intents        int                                `json:"intents"`
+}
+
+type IdentifyConnectionPropertiesObject struct {
+	Os      string `json:"os"`
+	Browser string `json:"browser"`
+	Device  string `json:"device"`
+}
+
+type UpdatePresenceObject struct {
+	Since     int              `json:"since"`
+	Activites []ActivityObject `json:"activites"`
+	Status    string           `json:"status"`
+	Afk       bool             `json:"afk"`
+}
+
+type ActivityObject struct {
+	Name          string                   `json:"name"`
+	Type          int                      `json:"type"`
+	Url           string                   `json:"url,omitempty"`
+	CreatedAt     int                      `json:"created_at"`
+	Timestamps    ActivityTimestampsObject `json:"timestamps"`
+	ApplicationId Snowflake                `json:"application_id"`
+	Details       string                   `json:"details,omitempty"`
+	State         string                   `json:"state,omitempty"`
+	Emoji         ActivityEmojiObject      `json:"emoji,omitempty"`
+	Party         ActivityPartyObject      `json:"party,omitempty"`
+	Assets        ActivityAssetsObject     `json:"assets,omitempty"`
+	Secrets       ActivitySecretsObject    `json:"secrets,omitempty"`
+	Instance      bool                     `json:"instance,omitempty"`
+	Flags         int                      `json:"flags,omitempty"`
+	Buttons       []ActivityButtonsObject           `json:"buttons,omitempty"`
+}
+
+type ActivityTimestampsObject struct {
+	Start int `json:"start,omitempty"`
+	End   int `json:"end,omitempty"`
+}
+
+type ActivityEmojiObject struct {
+	Name     string    `json:"name"`
+	Id       Snowflake `json:"id,omitempty"`
+	Animated bool      `json:"animated,omitempty"`
+}
+
+type ActivityPartyObject struct {
+	Id   string `json:"id,omitempty"`
+	Size []int  `json:"size,omitempty"`
+}
+
+type ActivityAssetsObject struct {
+	LargeImage string `json:"large_image,omitempty"`
+	LargeText  string `json:"large_text,omitempty"`
+	SmallImage string `json:"small_image,omitempty"`
+	SmallText  string `json:"small_text,omitempty"`
+}
+
+type ActivitySecretsObject struct {
+	Join     string `json:"join,omitempty"`
+	Spectate string `json:"spectate,omitempty"`
+	Match    string `json:"match,omitempty"`
+}
+
+type ActivityButtonsObject struct {
+	Label string `json:"label"`
+	Url   string `json:"url"`
 }
 
 // Gateway stuff
