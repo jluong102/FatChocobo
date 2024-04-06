@@ -11,20 +11,19 @@ import (
 
 func CreateWebsocketConnection(url string, headers http.Header) (*websocket.Conn, error) {
 	// We don't care about the http response
-	conn, _, err := websocket.DefaultDialer.Dial(url + "?encoding=json", headers)
+	conn, _, err := websocket.DefaultDialer.Dial(url+"?encoding=json", headers)
 
 	return conn, err
 }
 
-func ListenWebSocket(ws *websocket.Conn) {
+func ListenWebsocket(ws *websocket.Conn, output chan<- *GatewayEventPayload) {
 	data := new(GatewayEventPayload)
 
-	if err := ws.ReadJSON(data); err != nil {
-		log.Printf("Trouble reading from websocket\n\tError: %s")
+	for {
+		if err := ws.ReadJSON(data); err != nil {
+			log.Printf("Trouble reading from websocket\n\tError: %s")
+		}
+		
+		output <- data
 	}
-	
-	log.Printf("op -> %d", data.Op)
-	log.Printf("d -> %s", data.D)
-	log.Printf("s -> %d", data.S)
-	log.Printf("t -> %s", data.T)
 }

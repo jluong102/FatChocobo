@@ -290,14 +290,14 @@ type InstallParamsObject struct {
 
 // Gateway stuff
 type GatewayEventPayload struct {
-	Op int         `json:"op"` // Gateway Opcode
-	D  interface{} `json:"d"`  // Event Data
-	S  int         `json:"s"`  // Sequence number
-	T  string      `json:"t"`  // Event name
+	Op int                    `json:"op"` // Gateway Opcode
+	D  map[string]interface{} `json:"d"`  // Event Data
+	S  int                    `json:"s"`  // Sequence number
+	T  string                 `json:"t"`  // Event name
 }
 
 type HelloEvent struct {
-	HeartbeatInterval int `json:"heardbeat_interval"`
+	HeartbeatInterval int `json:"heartbeat_interval"`
 }
 
 type ReadyEvent struct {

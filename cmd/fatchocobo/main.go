@@ -124,5 +124,6 @@ func main() {
 
 	discord := CreateDiscord(settings.Token)
 	initDiscord(discord)
-	ListenWebSocket(discord.Websocket)
+
+	StartBot(discord)
 }
