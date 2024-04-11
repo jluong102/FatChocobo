@@ -39,8 +39,9 @@ func handleGatewayEvent(discord *Discord, data *GatewayEventPayload) {
 	case GATEWAY_OPCODE_HEARTBEAT_ACK:
 		log.Printf("Heartbeat acknowledged")
 	case GATEWAY_OPCODE_DISPATCH:
-		log.Printf("Ready Event")
+		log.Printf("Dispatch event")
 		payload := ParseOpReadyEvent(data.D)
+
 		log.Printf("v -> %d", payload.V)
 		log.Printf("User -> %v", payload.User)
 		log.Printf("Guilds -> %v", payload.Guilds)
@@ -61,8 +62,4 @@ func sendEndlessHeartbeats(discord *Discord, seq int) {
 		discord.SendHeartbeat(seq)
 		time.Sleep(time.Duration(discord.Heartbeat)*time.Millisecond - 100)
 	}
-}
-
-func initGatewayHandshake(discord *Discord) {
-
 }
