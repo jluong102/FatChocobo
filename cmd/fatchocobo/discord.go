@@ -708,6 +708,13 @@ type StickerItemObject struct {
 	Format int       `json:"format_type"`
 }
 
+type RoleSubscriptionDataObject struct {
+	RoleSubscriptionListingId Snowflake `json:"role_subscription_listing_id"`
+	TierName                  string    `json:"tier_name"`
+	TotalMonthsSubscribed     int       `json:"total_months_subscribed"`
+	IsRenewal                 bool      `json:"is_renewal"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
