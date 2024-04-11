@@ -495,6 +495,13 @@ type EmbedThumnailObject struct {
 	Width    int    `json:"width,omitempty"`
 }
 
+type EmbedVideoObject struct {
+	Url      string `json:"url,omitempty"`
+	ProxyUrl string `json:"proxy_url,omitempty"`
+	Height   int    `json:"height,omitempty"`
+	Width    int    `json:"width,omitempty"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
