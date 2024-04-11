@@ -144,6 +144,18 @@ const (
 	MESSAGE_ACTIVITY_TYPE_JOIN_REQUEST = 4
 )
 
+// Component Types
+const (
+	COMPONENT_TYPE_ACTION_ROW         = 1
+	COMPONENT_TYPE_BUTTON             = 2
+	COMPONENT_TYPE_STRING_SELECT      = 3
+	COMPONENT_TYPE_TEXT_INPUT         = 4
+	COMPONENT_TYPE_USER_SELECT        = 5
+	COMPONENT_TYPE_ROLE_SELECT        = 6
+	COMPONENT_TYPE_MENTIONABLE_SELECT = 7
+	COMPONENT_TYPE_CHANNEL_SELECT     = 8
+)
+
 type Discord struct {
 	Websocket *websocket.Conn
 	Heartbeat int
@@ -676,11 +688,19 @@ type ThreadMemberObject struct {
 }
 
 type TagObject struct {
-	Id Snowflake `json:"id"`
-	Name string `json:"name"`
-	Moderated bool `json:"moderated"`
-	EmojiId Snowflake `json:"emoji_id"`
-	EmojiName string `json:"emoji_name"`
+	Id        Snowflake `json:"id"`
+	Name      string    `json:"name"`
+	Moderated bool      `json:"moderated"`
+	EmojiId   Snowflake `json:"emoji_id"`
+	EmojiName string    `json:"emoji_name"`
+}
+
+type DefaultReactionObject struct {
+	EmojiId   Snowflake `json:"emoji_id"`
+	EmojiName string    `json:"emoji_name"`
+}
+
+type MessageComponentObject struct {
 }
 
 // Gateway stuff
