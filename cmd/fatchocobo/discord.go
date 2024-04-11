@@ -591,11 +591,26 @@ type MessageInteractionMetadataObject struct {
 }
 
 type MessageInteractionObject struct {
-	Id     Snowflake    `json:"id"`
-	Type   int          `json:"type"`
-	Name   string       `json:"name"`
-	User   UserObject   `json:"user"`
-	Member MemberObject `json:"member,omitempty"`
+	Id     Snowflake         `json:"id"`
+	Type   int               `json:"type"`
+	Name   string            `json:"name"`
+	User   UserObject        `json:"user"`
+	Member GuildMemberObject `json:"member,omitempty"`
+}
+
+type GuildMemberObject struct {
+	User                       UserObject  `json:"user,omitempty"`
+	Nick                       string      `json:"nick,omitempty"`
+	Avatar                     string      `json:"avatar,omitempty"`
+	Roles                      []Snowflake `json:"roles"`
+	JoinedAt                   string      `json:"joined_at"`
+	PremiumSince               string      `json:"premium_since,omitempty"`
+	Deaf                       bool        `json:"deaf"`
+	Mute                       bool        `json:"mute"`
+	Flags                      int         `json:"flags"`
+	Pending                    bool        `json:"pending,omitempty"`
+	Permissions                string      `json:"permissions,omitempty"`
+	CommunicationDisabledUntil string      `json:"communication_disabled_until,omitempty"`
 }
 
 // Gateway stuff
