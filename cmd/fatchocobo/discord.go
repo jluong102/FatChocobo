@@ -651,6 +651,22 @@ type ChannelObject struct {
 	DefaultForumLayout            int                   `json:"default_forum_layout,omitempty"`
 }
 
+type OverwriteObject struct {
+	Id    Snowflake `json:"id"`
+	Type  int       `json:"type"`
+	Allow string    `json:"allow"`
+	Deny  string    `json:"deny"`
+}
+
+type ThreadMetadataObject struct {
+	Archived            bool   `json:"archived"`
+	AutoArchiveDuration int    `json:"auto_archive_duration"`
+	ArchiveTimestamp    string `json:"archive_timestamp"`
+	Locked              bool   `json:"locked"`
+	Invitable           bool   `json:"invitable,omitempty"`
+	CreateTimestamp     string `json:"create_timestamp,omitempty"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
