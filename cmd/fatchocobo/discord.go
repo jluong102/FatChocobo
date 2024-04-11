@@ -507,6 +507,33 @@ type EmbedProviderObject struct {
 	Url  string `json:"url,omitempty"`
 }
 
+type EmbedAuthorObject struct {
+	Name         string `json:"name"`
+	Url          string `json:"url,omitempty"`
+	IconUrl      string `json:"icon_url,omitempty"`
+	ProxyIconUrl string `json:"proxy_icon_url,omitempty"`
+}
+
+type EmbedFieldObject struct {
+	Name   string `json:"name"`
+	Value  string `json:"value"`
+	Inline bool   `json:"inline"`
+}
+
+type ReactionObject struct {
+	Count        int         `json:"count"`
+	CountDetails interface{} `json:"count_details"`
+	Me           bool        `json:"me"`
+	MeBurst      bool        `json:"me_burst"`
+	Emoji        EmojiObject `json:"emoji"`
+	BurstColors  []int       `json:"burst_colors"`
+}
+
+type ReactionCountDetailsObject struct {
+	Burst int `json:"burst"`
+	Normal int `jsonh:"normal"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
