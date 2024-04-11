@@ -402,7 +402,7 @@ type ActivityButtonsObject struct {
 
 type MessageObject struct {
 	Id                   Snowflake                        `json:"id"`
-	ChannelId            Snowflag                         `json:"channel_id"`
+	ChannelId            Snowflake                        `json:"channel_id"`
 	Author               UserObject                       `json:"author"`
 	Content              string                           `json:"content"`
 	Timestamp            string                           `json:"timestamp"`
@@ -434,6 +434,45 @@ type MessageObject struct {
 	Position             int                              `json:"position,omitempty"`
 	RoleSubscriptionData RoleSubscriptionDataObject       `json:"role_subscription_data"`
 	Resolved             ResolvedDataObject               `json:"resolved,omitempty"`
+}
+
+type ChannelMentionObject struct {
+	Id      Snowflake `json:"id"`
+	GuildId Snowflake `json:"guild_id"`
+	Type    int       `json:"type"`
+	Name    string    `json:"name"`
+}
+
+type AttachmentObject struct {
+	Id           Snowflake `json:"id"`
+	Filename     string    `json:"filename"`
+	Description  string    `json:"description,omitempty"`
+	ContentType  string    `json:"content_type,omitempty"`
+	Size         int       `json:"size"`
+	Url          string    `json:"url"`
+	ProxyUrl     string    `json:"proxy_url"`
+	Height       int       `json:"height,omitempty"`
+	Width        int       `json:"width,omitempty"`
+	Ephermeral   bool      `json:"ephemeral,omitempty"`
+	DurationSecs float32   `json:"duration_secs,omitempty"`
+	Waveform     string    `json:"waveform,omitempty"`
+	Flags        int       `json:"flags,omitempty"`
+}
+
+type EmbedObject struct {
+	Title       string              `json:"title,omitempty"`
+	Type        string              `json:"type,omitempty"`
+	Description string              `json:"description,omitempty"`
+	Url         string              `json:"url,omitempty"`
+	Timestamp   string              `json:"timestamp,omitempty"`
+	Color       int                 `json:"color,omitempty"`
+	Footer      EmbedFooterObject   `json:"footer,omitempty"`
+	Image       EmbedImageObject    `json:"image,omitempty"`
+	Thumbnail   EmbedThumnailObject `json:"thumbnail,omitempty"`
+	Video       EmbedVideoObject    `json:"video,omitempty"`
+	Provider    EmbedProviderObject `json:"provider"omiteempty"`
+	Author      EmbedAuthorObject   `json:"author,omitempty"`
+	Fields      []EmbedFieldObject  `json:"fields,omitempty"`
 }
 
 // Gateway stuff
