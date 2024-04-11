@@ -530,8 +530,19 @@ type ReactionObject struct {
 }
 
 type ReactionCountDetailsObject struct {
-	Burst int `json:"burst"`
+	Burst  int `json:"burst"`
 	Normal int `jsonh:"normal"`
+}
+
+type EmojiObject struct {
+	Id            Snowflake    `json:"id"`
+	Name          string       `json:"name"`
+	Roles         []RoleObject `json:"role,omitempty"`
+	User          UserObject   `json:"user,omitempty"`
+	RequireColons bool         `json:"require_colons,omitempty"`
+	Managed       bool         `json:"managed,omitempty"`
+	Animated      bool         `json:"animated,omitempty"`
+	Available     bool         `json:"available,omitempty"`
 }
 
 // Gateway stuff
