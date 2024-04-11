@@ -667,6 +667,14 @@ type ThreadMetadataObject struct {
 	CreateTimestamp     string `json:"create_timestamp,omitempty"`
 }
 
+type ThreadMemberObject struct {
+	Id            Snowflake         `json:"id,omitempty"`
+	UserId        Snowflake         `json:"user_id,omitempty"`
+	JoinTimestamp string            `json:"join_timestamp"`
+	Flags         int               `json:"flags"`
+	Memberw       GuildMemberObject `json:"member,omitempty"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
