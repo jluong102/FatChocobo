@@ -464,7 +464,7 @@ type MessageObject struct {
 	Interaction          MessageInteractionObject         `json:"interaction,omitempty"`
 	Thread               ChannelObject                    `json:"thread,omitempty"`
 	Components           []MessageComponentObject         `json:"components,omitempty"`
-	StickerItems         []MessageStickerItemObject       `json:"sticker_items,omitempty"`
+	StickerItems         []StickerItemObject              `json:"sticker_items,omitempty"`
 	Stickers             []StickerObject                  `json:"stickers,omitempty"`
 	Position             int                              `json:"position,omitempty"`
 	RoleSubscriptionData RoleSubscriptionDataObject       `json:"role_subscription_data"`
@@ -700,7 +700,12 @@ type DefaultReactionObject struct {
 	EmojiName string    `json:"emoji_name"`
 }
 
-type MessageComponentObject struct {
+type MessageComponentObject interface{}
+
+type StickerItemObject struct {
+	Id     Snowflake `json:"id"`
+	Name   string    `json:"name"`
+	Format int       `json:"format_type"`
 }
 
 // Gateway stuff
