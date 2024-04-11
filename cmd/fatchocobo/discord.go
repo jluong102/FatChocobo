@@ -121,6 +121,14 @@ const (
 	STICKER_TYPE_GUILD    = 2
 )
 
+// Message Activity Types
+const (
+	MESSAGE_ACTIVITY_TYPE_JOIN         = 1
+	MESSAGE_ACTIVITY_TYPE_SPECTATE     = 2
+	MESSAGE_ACTIVITY_TYPE_LISTEN       = 3
+	MESSAGE_ACTIVITY_TYPE_JOIN_REQUEST = 4
+)
+
 type Discord struct {
 	Websocket *websocket.Conn
 	Heartbeat int
@@ -543,6 +551,11 @@ type EmojiObject struct {
 	Managed       bool         `json:"managed,omitempty"`
 	Animated      bool         `json:"animated,omitempty"`
 	Available     bool         `json:"available,omitempty"`
+}
+
+type MessageActivityObject struct {
+	Type    int    `json:"type"`
+	PartyId string `json:"party_id,omitempty"`
 }
 
 // Gateway stuff
