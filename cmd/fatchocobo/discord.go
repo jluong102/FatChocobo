@@ -613,6 +613,44 @@ type GuildMemberObject struct {
 	CommunicationDisabledUntil string      `json:"communication_disabled_until,omitempty"`
 }
 
+type ChannelObject struct {
+	Id                            Snowflake             `json:"id"`
+	Type                          int                   `json:"type"`
+	GuildId                       Snowflake             `json:"guild_id,omitempty"`
+	Position                      int                   `json:"position,omitempty"`
+	PermissionOverwrite           []OverwriteObject     `json:"permission_overwrite"`
+	Name                          string                `json:"name,omitempty"`
+	Topic                         string                `json:"topic,omitempty"`
+	Nswf                          bool                  `json:"nswf,omitempty"`
+	LastMessageId                 Snowflake             `json:"last_message_id,omitempty"`
+	Bitrate                       int                   `json:"bitrate,omitempty"`
+	UserLimit                     int                   `json:"user_limit,omitempty"`
+	RateLimitPerUser              int                   `json:"rate_limit_per_user,omitempty"`
+	Recipients                    []UserObject          `json:"recipients,omitempty"`
+	Icon                          string                `json:"icon,omitempty"`
+	OwnerId                       Snowflake             `json:"owner_id,omitempty"`
+	ApplicationId                 Snowflake             `json:"application_id,omitempty"`
+	Managed                       bool                  `json:"managed,omitempty"`
+	ParentId                      Snowflake             `json:"parent_id,omitempty"`
+	LastPinTimestamp              string                `json:"last_pin_timestampe,omitempty"`
+	RTCRegion                     string                `json:"rtc_region,omitempty"`
+	VideoQualityMode              int                   `json:"video_quality_mode,omitempty"`
+	MessageCount                  int                   `json:"message_count,omitempty"`
+	MemberCount                   int                   `json:"member_count,omitempty"`
+	ThreadMetadata                ThreadMetadataObject  `json:"thread_metadata,omitempty"`
+	Member                        ThreadMemberObject    `json:"member,omitempty"`
+	DefaultAutoArchiveDuration    int                   `json:"default_auto_archive_duration,omitempty"`
+	Permissions                   string                `json:"permissions,omitempty"`
+	Flags                         int                   `json:"flags,omitempty"`
+	TotalMessageSent              int                   `json:"totla_message_sent,omitempty"`
+	AvailableTags                 []TagObject           `json:"availble_tags,omitempty"`
+	AppliedTags                   []Snowflake           `json:"applied_tags"`
+	DefaultReactionEmoji          DefaultReactionObject `json:"default_reaction_emoji,omitempty"`
+	DefaultThreadRateLimitPerUser int                   `json:"default_thread_rate_limit_per_user,omitempty"`
+	DefaultSortOrder              int                   `json:"default_sort_order,omitempty"`
+	DefaultForumLayout            int                   `json:"default_forum_layout,omitempty"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
