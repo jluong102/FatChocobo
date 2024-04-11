@@ -580,6 +580,16 @@ type MessageReferenceObject struct {
 	FailIfNotExists bool      `json:"fail_if_not_exists,omitempty"`
 }
 
+type MessageInteractionMetadataObject struct {
+	Id                            Snowflake                        `json:"id"`
+	Type                          int                              `json:"type"`
+	UserId                        Snowflake                        `json:"user_id"`
+	AuthorizingIntergrationOwners map[string]int                   `json:"authorizing_intergration_owners"`
+	OriginalResponseMessageId     Snowflake                        `json:"original_response_message_id,omitempty"`
+	InteractedMessageId           Snowflake                        `json:"interacted_message_id,omitempty"`
+	TriggeringInteractionMetadata MessageInteractionMetadataObject `json:"triggering_interaction_metadata,omitempty"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
