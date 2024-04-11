@@ -449,7 +449,7 @@ type MessageObject struct {
 	Flags                int                              `json:"flags,omitempty"`
 	ReferencedMessage    MessageObject                    `json:"referenced_message,omitempty"`
 	InteractionMetadata  MessageInteractionMetadataObject `json:"interaction_metadata,omitempty"`
-	Interaction          MessageInteraction               `json:"interaction,omitempty"`
+	Interaction          MessageInteractionObject         `json:"interaction,omitempty"`
 	Thread               ChannelObject                    `json:"thread,omitempty"`
 	Components           []MessageComponentObject         `json:"components,omitempty"`
 	StickerItems         []MessageStickerItemObject       `json:"sticker_items,omitempty"`
@@ -588,6 +588,14 @@ type MessageInteractionMetadataObject struct {
 	OriginalResponseMessageId     Snowflake                        `json:"original_response_message_id,omitempty"`
 	InteractedMessageId           Snowflake                        `json:"interacted_message_id,omitempty"`
 	TriggeringInteractionMetadata MessageInteractionMetadataObject `json:"triggering_interaction_metadata,omitempty"`
+}
+
+type MessageInteractionObject struct {
+	Id     Snowflake    `json:"id"`
+	Type   int          `json:"type"`
+	Name   string       `json:"name"`
+	User   UserObject   `json:"user"`
+	Member MemberObject `json:"member,omitempty"`
 }
 
 // Gateway stuff
