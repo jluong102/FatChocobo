@@ -502,6 +502,11 @@ type EmbedVideoObject struct {
 	Width    int    `json:"width,omitempty"`
 }
 
+type EmbedProviderObject struct {
+	Name string `json:"name,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
