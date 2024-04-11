@@ -715,6 +715,15 @@ type RoleSubscriptionDataObject struct {
 	IsRenewal                 bool      `json:"is_renewal"`
 }
 
+type ResolvedDataObject struct {
+	Users       map[Snowflake]UserObject       `json:"users,omitempty"`
+	Members     map[Snowflake]MemberObject     `json:"members,omitempty"`
+	Roles       map[Snowflake]RoleObject       `json:"roles"`
+	Channels    map[Snowflake]ChannelObject    `json:"channels"`
+	Messages    map[Snowflake]MessageObject    `json:"messages"`
+	Attachments map[Snowflake]AttachmentObject `json:"attachments"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
