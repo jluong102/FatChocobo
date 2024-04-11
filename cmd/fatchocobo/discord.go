@@ -101,6 +101,21 @@ const (
 	ACTIVITY_FLAG_EMBEDDED              = 1 << 8
 )
 
+// Message Flags
+const (
+	MESSAGE_FLAGS_CROSSPOSTED                            = 1 << 0
+	MESSAGE_FLAGS_IS_CROSSPOST                           = 1 << 1
+	MESSAGE_FLAGS_SUPPRESS_EMBEDS                        = 1 << 2
+	MESSAGE_FLAGS_SOURCE_MESSAGE_DELETED                 = 1 << 3
+	MESSAGE_FLAGS_URGENT                                 = 1 << 4
+	MESSAGE_FLAGS_HAS_THREAD                             = 1 << 5
+	MESSAGE_FLAGS_EPHEMERAL                              = 1 << 6
+	MESSAGE_FLAGS_LOADING                                = 1 << 7
+	MESSAGE_FLAGS_FAILED_TO_MENTION_SOME_ROLES_IN_THREAD = 1 << 8
+	MESSAGE_FLAGS_SUPRESS_NOTIFICATIONS                  = 1 << 12
+	MESSAGE_FLAGS_IS_VOICE_MESSAGE                       = 1 << 13
+)
+
 // Premium types
 const (
 	PREMIUM_TYPES_NONE          = 0
