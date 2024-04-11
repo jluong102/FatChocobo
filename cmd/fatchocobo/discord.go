@@ -675,6 +675,14 @@ type ThreadMemberObject struct {
 	Memberw       GuildMemberObject `json:"member,omitempty"`
 }
 
+type TagObject struct {
+	Id Snowflake `json:"id"`
+	Name string `json:"name"`
+	Moderated bool `json:"moderated"`
+	EmojiId Snowflake `json:"emoji_id"`
+	EmojiName string `json:"emoji_name"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
