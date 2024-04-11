@@ -716,12 +716,12 @@ type RoleSubscriptionDataObject struct {
 }
 
 type ResolvedDataObject struct {
-	Users       map[Snowflake]UserObject       `json:"users,omitempty"`
-	Members     map[Snowflake]MemberObject     `json:"members,omitempty"`
-	Roles       map[Snowflake]RoleObject       `json:"roles"`
-	Channels    map[Snowflake]ChannelObject    `json:"channels"`
-	Messages    map[Snowflake]MessageObject    `json:"messages"`
-	Attachments map[Snowflake]AttachmentObject `json:"attachments"`
+	Users       map[Snowflake]UserObject        `json:"users,omitempty"`
+	Members     map[Snowflake]GuildMemberObject `json:"members,omitempty"`
+	Roles       map[Snowflake]RoleObject        `json:"roles"`
+	Channels    map[Snowflake]ChannelObject     `json:"channels"`
+	Messages    map[Snowflake]MessageObject     `json:"messages"`
+	Attachments map[Snowflake]AttachmentObject  `json:"attachments"`
 }
 
 // Gateway stuff
