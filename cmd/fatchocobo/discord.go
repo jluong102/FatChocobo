@@ -459,7 +459,7 @@ type MessageObject struct {
 	ApplicationId        Snowflake                        `json:"application_id,omitempty"`
 	MessageReference     MessageReferenceObject           `json:"message_reference,omitempty"`
 	Flags                int                              `json:"flags,omitempty"`
-	ReferencedMessage    MessageObject                    `json:"referenced_message,omitempty"`
+	ReferencedMessage    *MessageObject                   `json:"referenced_message,omitempty"`
 	InteractionMetadata  MessageInteractionMetadataObject `json:"interaction_metadata,omitempty"`
 	Interaction          MessageInteractionObject         `json:"interaction,omitempty"`
 	Thread               ChannelObject                    `json:"thread,omitempty"`
@@ -505,7 +505,7 @@ type EmbedObject struct {
 	Image       EmbedImageObject    `json:"image,omitempty"`
 	Thumbnail   EmbedThumnailObject `json:"thumbnail,omitempty"`
 	Video       EmbedVideoObject    `json:"video,omitempty"`
-	Provider    EmbedProviderObject `json:"provider"omiteempty"`
+	Provider    EmbedProviderObject `json:"provider,omitempty"`
 	Author      EmbedAuthorObject   `json:"author,omitempty"`
 	Fields      []EmbedFieldObject  `json:"fields,omitempty"`
 }
@@ -593,13 +593,13 @@ type MessageReferenceObject struct {
 }
 
 type MessageInteractionMetadataObject struct {
-	Id                            Snowflake                        `json:"id"`
-	Type                          int                              `json:"type"`
-	UserId                        Snowflake                        `json:"user_id"`
-	AuthorizingIntergrationOwners map[string]int                   `json:"authorizing_intergration_owners"`
-	OriginalResponseMessageId     Snowflake                        `json:"original_response_message_id,omitempty"`
-	InteractedMessageId           Snowflake                        `json:"interacted_message_id,omitempty"`
-	TriggeringInteractionMetadata MessageInteractionMetadataObject `json:"triggering_interaction_metadata,omitempty"`
+	Id                            Snowflake                         `json:"id"`
+	Type                          int                               `json:"type"`
+	UserId                        Snowflake                         `json:"user_id"`
+	AuthorizingIntergrationOwners map[string]int                    `json:"authorizing_intergration_owners"`
+	OriginalResponseMessageId     Snowflake                         `json:"original_response_message_id,omitempty"`
+	InteractedMessageId           Snowflake                         `json:"interacted_message_id,omitempty"`
+	TriggeringInteractionMetadata *MessageInteractionMetadataObject `json:"triggering_interaction_metadata,omitempty"`
 }
 
 type MessageInteractionObject struct {
