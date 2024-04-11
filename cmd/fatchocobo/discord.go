@@ -573,6 +573,13 @@ type MessageActivityObject struct {
 	PartyId string `json:"party_id,omitempty"`
 }
 
+type MessageReferenceObject struct {
+	MessageId       Snowflake `json:"message_id,omitempty"`
+	ChannelId       Snowflake `json:"channel_id,omitempty"`
+	GuildId         Snowflake `json:"guild_id,omitempty"`
+	FailIfNotExists bool      `json:"fail_if_not_exists,omitempty"`
+}
+
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
