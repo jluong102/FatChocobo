@@ -35,6 +35,9 @@ func ParseOpHelloEvent(data interface{}) *HelloEvent {
 }
 
 func ParseOpReadyEvent(data interface{}) *ReadyEvent {
+	blah, _ := json.MarshalIndent(data, "", " ")
+	log.Printf("-> %s", string(blah))
+
 	encoded, err := json.Marshal(data)
 
 	if err != nil {
@@ -48,5 +51,6 @@ func ParseOpReadyEvent(data interface{}) *ReadyEvent {
 		log.Printf("Failed to parse JSON\n\t%s", err)
 		return nil
 	}
+
 	return output
 }
