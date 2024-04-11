@@ -42,6 +42,7 @@ func ParseOpReadyEvent(data interface{}) *ReadyEvent {
 
 	if err != nil {
 		log.Printf("Failed to encode data to JSON\n\t%s", err)
+		return nil
 	}
 
 	output := new(ReadyEvent)
