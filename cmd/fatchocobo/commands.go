@@ -15,3 +15,7 @@ func SelectCommand(discord *Discord, event *MessageCreateEvent) {
 		log.Printf("No command found in mention")
 	}
 }
+
+func runHelp(discord, event *MessageCreateEvent) {
+
+}

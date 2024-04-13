@@ -169,8 +169,8 @@ type Snowflake string
 
 // HTTP Responses
 type GatewayBotResponse struct {
-	Url               string                  `json:"url"`
-	Shards            int                     `json:"shards"`
+	Url               string                   `json:"url"`
+	Shards            int                      `json:"shards"`
 	SessionStartLimit *SessionStartLimitObject `json:"session_start_limit"`
 }
 
@@ -211,55 +211,55 @@ type TeamObject struct {
 }
 
 type TeamMemberObject struct {
-	MembershipState int        `json:"membership_state"`
-	TeamId          Snowflake  `json:"team_id"`
+	MembershipState int         `json:"membership_state"`
+	TeamId          Snowflake   `json:"team_id"`
 	User            *UserObject `json:"user"`
-	Role            string     `json:"role"`
+	Role            string      `json:"role"`
 }
 
 type GuildObject struct {
-	Id                          Snowflake           `json:"id"`
-	Name                        string              `json:"name"`
-	Icon                        string              `json:"icon"`
-	IconHash                    string              `json:"icon_hash"`
-	Splash                      string              `json:"splash"`
-	DiscoverySplash             string              `json:"string"`
-	Owner                       bool                `json:"owner"`
-	OwnerId                     Snowflake           `json:"owner_id"`
-	Permissions                 string              `json:"permissions"`
-	Region                      string              `json:"region"`
-	AfkChannelId                Snowflake           `json:"afk_channel_id"`
-	AfkTimeout                  int                 `json:"afk_timeout"`
-	WidgetEnabled               bool                `json:"widget_enabled"`
-	WidgetChannelId             Snowflake           `json:"widget_channel_id"`
-	VerificationLevel           int                 `json:"verification_level"`
-	DefaultMessageNotifications int                 `json:"default_message_notifications"`
-	ExplicitContentFilter       int                 `json:"explicit_content_filter"`
-	Roles                       []RoleObject        `json:"roles"`
-	Emojis                      []EmojisObject      `json:"emojis"`
-	Features                    []string            `json:"features"`
-	MFALevel                    int                 `json:"mfa_level"`
-	ApplicationId               Snowflake           `json:"application_id"`
-	SystemChannelId             Snowflake           `json:"system_channel_id"`
-	SystemChannelFlags          int                 `json:"system_channel_flags"`
-	RulesChannelId              Snowflake           `json:"rules_channel_id"`
-	MaxPresences                int                 `json:"max_presences"`
-	MaxMembers                  int                 `json:"max_members"`
-	VanityUrlCode               string              `json:"vanity_url_code"`
-	Description                 string              `json:"description"`
-	Banner                      string              `json:"banner"`
-	PremiumTier                 int                 `json:"premium_tier"`
-	PremiumSubscriptionCount    int                 `json:"premium_subscription_count"`
-	PreferredLocale             string              `json:"preferred_locale"`
-	PublicUpdatesChannelId      Snowflake           `json:"public_updates_channel_id"`
-	MaxVideoChannelUsers        int                 `json:"max_video_channel_users"`
-	MaxStageVideoChannelUsers   int                 `json:"max_stage_video_channel_users"`
-	ApproximateMemberCount      int                 `json:"approximate_member_count"`
+	Id                          Snowflake            `json:"id"`
+	Name                        string               `json:"name"`
+	Icon                        string               `json:"icon"`
+	IconHash                    string               `json:"icon_hash"`
+	Splash                      string               `json:"splash"`
+	DiscoverySplash             string               `json:"string"`
+	Owner                       bool                 `json:"owner"`
+	OwnerId                     Snowflake            `json:"owner_id"`
+	Permissions                 string               `json:"permissions"`
+	Region                      string               `json:"region"`
+	AfkChannelId                Snowflake            `json:"afk_channel_id"`
+	AfkTimeout                  int                  `json:"afk_timeout"`
+	WidgetEnabled               bool                 `json:"widget_enabled"`
+	WidgetChannelId             Snowflake            `json:"widget_channel_id"`
+	VerificationLevel           int                  `json:"verification_level"`
+	DefaultMessageNotifications int                  `json:"default_message_notifications"`
+	ExplicitContentFilter       int                  `json:"explicit_content_filter"`
+	Roles                       []RoleObject         `json:"roles"`
+	Emojis                      []EmojisObject       `json:"emojis"`
+	Features                    []string             `json:"features"`
+	MFALevel                    int                  `json:"mfa_level"`
+	ApplicationId               Snowflake            `json:"application_id"`
+	SystemChannelId             Snowflake            `json:"system_channel_id"`
+	SystemChannelFlags          int                  `json:"system_channel_flags"`
+	RulesChannelId              Snowflake            `json:"rules_channel_id"`
+	MaxPresences                int                  `json:"max_presences"`
+	MaxMembers                  int                  `json:"max_members"`
+	VanityUrlCode               string               `json:"vanity_url_code"`
+	Description                 string               `json:"description"`
+	Banner                      string               `json:"banner"`
+	PremiumTier                 int                  `json:"premium_tier"`
+	PremiumSubscriptionCount    int                  `json:"premium_subscription_count"`
+	PreferredLocale             string               `json:"preferred_locale"`
+	PublicUpdatesChannelId      Snowflake            `json:"public_updates_channel_id"`
+	MaxVideoChannelUsers        int                  `json:"max_video_channel_users"`
+	MaxStageVideoChannelUsers   int                  `json:"max_stage_video_channel_users"`
+	ApproximateMemberCount      int                  `json:"approximate_member_count"`
 	WelcomeScreen               *WelcomeScreenObject `json:"welcome_screen"`
-	NsfwLevel                   int                 `json:"nsfw_level"`
-	Stickers                    []StickerObject     `json:"stickers"`
-	PremiumProgressBarEnabled   bool                `json:"premium_progress_bar_enabled"`
-	SafetyAlertsChannelId       Snowflake           `json:"safety_alerts_channel_id"`
+	NsfwLevel                   int                  `json:"nsfw_level"`
+	Stickers                    []StickerObject      `json:"stickers"`
+	PremiumProgressBarEnabled   bool                 `json:"premium_progress_bar_enabled"`
+	SafetyAlertsChannelId       Snowflake            `json:"safety_alerts_channel_id"`
 }
 
 type UnavailableGuildObject struct {
@@ -268,47 +268,47 @@ type UnavailableGuildObject struct {
 }
 
 type ApplicationObject struct {
-	Id                             Snowflake           `json:"id"`
-	Name                           string              `json:"name"`
-	Icon                           string              `json:"icon"`
-	Description                    string              `json:"description"`
-	RpcOrigin                      []string            `json:"rpc_origin"`
-	BotPublic                      bool                `json:"bot_public"`
-	BotRequireCodeGrant            bool                `json:"bot_require_code_grant"`
+	Id                             Snowflake            `json:"id"`
+	Name                           string               `json:"name"`
+	Icon                           string               `json:"icon"`
+	Description                    string               `json:"description"`
+	RpcOrigin                      []string             `json:"rpc_origin"`
+	BotPublic                      bool                 `json:"bot_public"`
+	BotRequireCodeGrant            bool                 `json:"bot_require_code_grant"`
 	Bot                            *UserObject          `json:"bot"`
-	TermsOfServiceUrl              string              `json:"terms_of_service_url"`
-	PrivacyPolicyUrl               string              `json:"privacy_policy_url"`
+	TermsOfServiceUrl              string               `json:"terms_of_service_url"`
+	PrivacyPolicyUrl               string               `json:"privacy_policy_url"`
 	Owner                          *UserObject          `json:"owner"`
-	Summary                        string              `json:"summary"` // Deprecated
-	VerifyKey                      string              `json:"verify_key"`
+	Summary                        string               `json:"summary"` // Deprecated
+	VerifyKey                      string               `json:"verify_key"`
 	Team                           *TeamObject          `json:"team"`
-	GuildId                        Snowflake           `json:"guild_id"`
+	GuildId                        Snowflake            `json:"guild_id"`
 	Guild                          *GuildObject         `json:"guild"`
-	PrimarySkuId                   Snowflake           `json:"primary_sku_id"`
-	Slug                           string              `json:"slug"`
-	CoverImage                     string              `json:"cover_image"`
-	Flags                          int                 `json:"flags"`
-	ApproximateGuildCount          int                 `json:"approximate_guild_count"`
-	RedirectUris                   []string            `json:"redirect_uris"`
-	InteractionsEndpointUrl        string              `json:"interactions_endpoint_url"`
-	RoleConnectionsVerificationUrl string              `json:"role_connections_verification_url"`
-	Tags                           []string            `json:"tags"`
+	PrimarySkuId                   Snowflake            `json:"primary_sku_id"`
+	Slug                           string               `json:"slug"`
+	CoverImage                     string               `json:"cover_image"`
+	Flags                          int                  `json:"flags"`
+	ApproximateGuildCount          int                  `json:"approximate_guild_count"`
+	RedirectUris                   []string             `json:"redirect_uris"`
+	InteractionsEndpointUrl        string               `json:"interactions_endpoint_url"`
+	RoleConnectionsVerificationUrl string               `json:"role_connections_verification_url"`
+	Tags                           []string             `json:"tags"`
 	InstallParams                  *InstallParamsObject `json:"install_params"`
 }
 
 type RoleObject struct {
-	Id           Snowflake     `json:"id"`
-	Name         string        `json:"name"`
-	Color        int           `json:"color"`
-	Hoist        bool          `json:"hoist"`
-	Icon         string        `json:"icon"`
-	UnicodeEmoji string        `json:"unicode_emoji"`
-	Position     int           `json:"position"`
-	Permissions  string        `json:"permissions"`
-	Managed      bool          `json:"managed"`
-	Mentionable  bool          `json:"mentionable"`
+	Id           Snowflake      `json:"id"`
+	Name         string         `json:"name"`
+	Color        int            `json:"color"`
+	Hoist        bool           `json:"hoist"`
+	Icon         string         `json:"icon"`
+	UnicodeEmoji string         `json:"unicode_emoji"`
+	Position     int            `json:"position"`
+	Permissions  string         `json:"permissions"`
+	Managed      bool           `json:"managed"`
+	Mentionable  bool           `json:"mentionable"`
 	Tags         *RoleTagObject `json:"tags"`
-	Flags        int           `json:"flags"`
+	Flags        int            `json:"flags"`
 }
 
 type RoleTagObject struct {
@@ -324,7 +324,7 @@ type EmojisObject struct {
 	Id            Snowflake    `json:"id"`
 	Name          string       `json:"name"`
 	Roles         []RoleObject `json:"roles"`
-	User          *UserObject   `json:"user"`
+	User          *UserObject  `json:"user"`
 	RequireColons bool         `json:"require_colons"`
 	Managed       bool         `json:"managed"`
 	Animated      bool         `json:"animated"`
@@ -344,18 +344,18 @@ type WelcomeScreenChannel struct {
 }
 
 type StickerObject struct {
-	Id          Snowflake  `json:"id"`
-	PackId      Snowflake  `json:"pack_id"`
-	Name        string     `json:"name"`
-	Description string     `json:"description"`
-	Tags        string     `json:"tags"`
-	Asset       string     `json:"asset"`
-	Type        int        `json:"type"`
-	FormatType  int        `json:"format_type"`
-	Available   bool       `json:"available"`
-	GuildId     Snowflake  `json:"guild_id"`
+	Id          Snowflake   `json:"id"`
+	PackId      Snowflake   `json:"pack_id"`
+	Name        string      `json:"name"`
+	Description string      `json:"description"`
+	Tags        string      `json:"tags"`
+	Asset       string      `json:"asset"`
+	Type        int         `json:"type"`
+	FormatType  int         `json:"format_type"`
+	Available   bool        `json:"available"`
+	GuildId     Snowflake   `json:"guild_id"`
 	User        *UserObject `json:"user"`
-	SortValue   int        `json:"sort_value"`
+	SortValue   int         `json:"sort_value"`
 }
 
 type InstallParamsObject struct {
@@ -364,13 +364,13 @@ type InstallParamsObject struct {
 }
 
 type IdentifyObject struct {
-	Token          string                             `json:"token"`
+	Token          string                              `json:"token"`
 	Properties     *IdentifyConnectionPropertiesObject `json:"properties"`
-	Compress       bool                               `json:"compress,omitempty"`
-	LargeThreshold int                                `json:"large_threshold"`
-	Shard          []int                              `json:"shard,omitempty"`
+	Compress       bool                                `json:"compress,omitempty"`
+	LargeThreshold int                                 `json:"large_threshold"`
+	Shard          []int                               `json:"shard,omitempty"`
 	Presence       *UpdatePresenceObject               `json:"presence,omitempty"`
-	Intents        int                                `json:"intents"`
+	Intents        int                                 `json:"intents"`
 }
 
 type IdentifyConnectionPropertiesObject struct {
@@ -387,21 +387,21 @@ type UpdatePresenceObject struct {
 }
 
 type ActivityObject struct {
-	Name          string                   `json:"name"`
-	Type          int                      `json:"type"`
-	Url           string                   `json:"url,omitempty"`
-	CreatedAt     int                      `json:"created_at"`
+	Name          string                    `json:"name"`
+	Type          int                       `json:"type"`
+	Url           string                    `json:"url,omitempty"`
+	CreatedAt     int                       `json:"created_at"`
 	Timestamps    *ActivityTimestampsObject `json:"timestamps"`
-	ApplicationId Snowflake                `json:"application_id"`
-	Details       string                   `json:"details,omitempty"`
-	State         string                   `json:"state,omitempty"`
+	ApplicationId Snowflake                 `json:"application_id"`
+	Details       string                    `json:"details,omitempty"`
+	State         string                    `json:"state,omitempty"`
 	Emoji         *ActivityEmojiObject      `json:"emoji,omitempty"`
 	Party         *ActivityPartyObject      `json:"party,omitempty"`
 	Assets        *ActivityAssetsObject     `json:"assets,omitempty"`
 	Secrets       *ActivitySecretsObject    `json:"secrets,omitempty"`
-	Instance      bool                     `json:"instance,omitempty"`
-	Flags         int                      `json:"flags,omitempty"`
-	Buttons       []ActivityButtonsObject  `json:"buttons,omitempty"`
+	Instance      bool                      `json:"instance,omitempty"`
+	Flags         int                       `json:"flags,omitempty"`
+	Buttons       []ActivityButtonsObject   `json:"buttons,omitempty"`
 }
 
 type ActivityTimestampsObject struct {
@@ -439,37 +439,37 @@ type ActivityButtonsObject struct {
 }
 
 type MessageObject struct {
-	Id                   Snowflake                        `json:"id"`
-	ChannelId            Snowflake                        `json:"channel_id"`
+	Id                   Snowflake                         `json:"id"`
+	ChannelId            Snowflake                         `json:"channel_id"`
 	Author               *UserObject                       `json:"author"`
-	Content              string                           `json:"content"`
-	Timestamp            string                           `json:"timestamp"`
-	EditedTimestamp      string                           `json:"edited_timestamp"`
-	TTS                  bool                             `json:"tts"`
-	MentionEveryone      bool                             `json:"mention_everyone"`
-	Mentions             []UserObject                     `json:"mentions"`
-	MentionRoles         []RoleObject                     `json:"mention_roles"`
-	MentionChannels      []ChannelMentionObject           `json:"mention_channels,omitempty"`
-	Attachments          []AttachmentObject               `json:"attachments"`
-	Embeds               []EmbedObject                    `json:"embeds"`
-	Reactions            []ReactionObject                 `json:"reactions"`
-	Nonce                int                              `json:"nonce,omitempty"`
-	Pinned               bool                             `json:"pinned"`
-	WebhookId            Snowflake                        `json:"webhook_id,omitempty"`
-	Type                 int                              `json:"type"`
+	Content              string                            `json:"content"`
+	Timestamp            string                            `json:"timestamp"`
+	EditedTimestamp      string                            `json:"edited_timestamp"`
+	TTS                  bool                              `json:"tts"`
+	MentionEveryone      bool                              `json:"mention_everyone"`
+	Mentions             []UserObject                      `json:"mentions"`
+	MentionRoles         []RoleObject                      `json:"mention_roles"`
+	MentionChannels      []ChannelMentionObject            `json:"mention_channels,omitempty"`
+	Attachments          []AttachmentObject                `json:"attachments"`
+	Embeds               []EmbedObject                     `json:"embeds"`
+	Reactions            []ReactionObject                  `json:"reactions"`
+	Nonce                int                               `json:"nonce,omitempty"`
+	Pinned               bool                              `json:"pinned"`
+	WebhookId            Snowflake                         `json:"webhook_id,omitempty"`
+	Type                 int                               `json:"type"`
 	Activity             *MessageActivityObject            `json:"activity,omitempty"`
 	Application          *ApplicationObject                `json:"application,omitempty"`
-	ApplicationId        Snowflake                        `json:"application_id,omitempty"`
+	ApplicationId        Snowflake                         `json:"application_id,omitempty"`
 	MessageReference     *MessageReferenceObject           `json:"message_reference,omitempty"`
-	Flags                int                              `json:"flags,omitempty"`
-	ReferencedMessage    *MessageObject                   `json:"referenced_message,omitempty"`
+	Flags                int                               `json:"flags,omitempty"`
+	ReferencedMessage    *MessageObject                    `json:"referenced_message,omitempty"`
 	InteractionMetadata  *MessageInteractionMetadataObject `json:"interaction_metadata,omitempty"`
 	Interaction          *MessageInteractionObject         `json:"interaction,omitempty"`
-	Thread               ChannelObject                    `json:"thread,omitempty"`
-	Components           []MessageComponentObject         `json:"components,omitempty"`
-	StickerItems         []StickerItemObject              `json:"sticker_items,omitempty"`
-	Stickers             []StickerObject                  `json:"stickers,omitempty"`
-	Position             int                              `json:"position,omitempty"`
+	Thread               ChannelObject                     `json:"thread,omitempty"`
+	Components           []MessageComponentObject          `json:"components,omitempty"`
+	StickerItems         []StickerItemObject               `json:"sticker_items,omitempty"`
+	Stickers             []StickerObject                   `json:"stickers,omitempty"`
+	Position             int                               `json:"position,omitempty"`
 	RoleSubscriptionData *RoleSubscriptionDataObject       `json:"role_subscription_data"`
 	Resolved             *ResolvedDataObject               `json:"resolved,omitempty"`
 }
@@ -498,19 +498,19 @@ type AttachmentObject struct {
 }
 
 type EmbedObject struct {
-	Title       string              `json:"title,omitempty"`
-	Type        string              `json:"type,omitempty"`
-	Description string              `json:"description,omitempty"`
-	Url         string              `json:"url,omitempty"`
-	Timestamp   string              `json:"timestamp,omitempty"`
-	Color       int                 `json:"color,omitempty"`
+	Title       string               `json:"title,omitempty"`
+	Type        string               `json:"type,omitempty"`
+	Description string               `json:"description,omitempty"`
+	Url         string               `json:"url,omitempty"`
+	Timestamp   string               `json:"timestamp,omitempty"`
+	Color       int                  `json:"color,omitempty"`
 	Footer      *EmbedFooterObject   `json:"footer,omitempty"`
 	Image       *EmbedImageObject    `json:"image,omitempty"`
 	Thumbnail   *EmbedThumnailObject `json:"thumbnail,omitempty"`
 	Video       *EmbedVideoObject    `json:"video,omitempty"`
 	Provider    *EmbedProviderObject `json:"provider,omitempty"`
 	Author      *EmbedAuthorObject   `json:"author,omitempty"`
-	Fields      []EmbedFieldObject  `json:"fields,omitempty"`
+	Fields      []EmbedFieldObject   `json:"fields,omitempty"`
 }
 
 type EmbedFooterObject struct {
@@ -559,12 +559,12 @@ type EmbedFieldObject struct {
 }
 
 type ReactionObject struct {
-	Count        int         `json:"count"`
-	CountDetails interface{} `json:"count_details"`
-	Me           bool        `json:"me"`
-	MeBurst      bool        `json:"me_burst"`
+	Count        int          `json:"count"`
+	CountDetails interface{}  `json:"count_details"`
+	Me           bool         `json:"me"`
+	MeBurst      bool         `json:"me_burst"`
 	Emoji        *EmojiObject `json:"emoji"`
-	BurstColors  []int       `json:"burst_colors"`
+	BurstColors  []int        `json:"burst_colors"`
 }
 
 type ReactionCountDetailsObject struct {
@@ -576,7 +576,7 @@ type EmojiObject struct {
 	Id            Snowflake    `json:"id"`
 	Name          string       `json:"name"`
 	Roles         []RoleObject `json:"role,omitempty"`
-	User          *UserObject   `json:"user,omitempty"`
+	User          *UserObject  `json:"user,omitempty"`
 	RequireColons bool         `json:"require_colons,omitempty"`
 	Managed       bool         `json:"managed,omitempty"`
 	Animated      bool         `json:"animated,omitempty"`
@@ -606,15 +606,15 @@ type MessageInteractionMetadataObject struct {
 }
 
 type MessageInteractionObject struct {
-	Id     Snowflake         `json:"id"`
-	Type   int               `json:"type"`
-	Name   string            `json:"name"`
+	Id     Snowflake          `json:"id"`
+	Type   int                `json:"type"`
+	Name   string             `json:"name"`
 	User   *UserObject        `json:"user"`
 	Member *GuildMemberObject `json:"member,omitempty"`
 }
 
 type GuildMemberObject struct {
-	User                       *UserObject  `json:"user,omitempty"`
+	User                       *UserObject `json:"user,omitempty"`
 	Nick                       string      `json:"nick,omitempty"`
 	Avatar                     string      `json:"avatar,omitempty"`
 	Roles                      []Snowflake `json:"roles"`
@@ -629,41 +629,41 @@ type GuildMemberObject struct {
 }
 
 type ChannelObject struct {
-	Id                            Snowflake             `json:"id"`
-	Type                          int                   `json:"type"`
-	GuildId                       Snowflake             `json:"guild_id,omitempty"`
-	Position                      int                   `json:"position,omitempty"`
-	PermissionOverwrite           []OverwriteObject     `json:"permission_overwrite"`
-	Name                          string                `json:"name,omitempty"`
-	Topic                         string                `json:"topic,omitempty"`
-	Nswf                          bool                  `json:"nswf,omitempty"`
-	LastMessageId                 Snowflake             `json:"last_message_id,omitempty"`
-	Bitrate                       int                   `json:"bitrate,omitempty"`
-	UserLimit                     int                   `json:"user_limit,omitempty"`
-	RateLimitPerUser              int                   `json:"rate_limit_per_user,omitempty"`
-	Recipients                    []UserObject          `json:"recipients,omitempty"`
-	Icon                          string                `json:"icon,omitempty"`
-	OwnerId                       Snowflake             `json:"owner_id,omitempty"`
-	ApplicationId                 Snowflake             `json:"application_id,omitempty"`
-	Managed                       bool                  `json:"managed,omitempty"`
-	ParentId                      Snowflake             `json:"parent_id,omitempty"`
-	LastPinTimestamp              string                `json:"last_pin_timestampe,omitempty"`
-	RTCRegion                     string                `json:"rtc_region,omitempty"`
-	VideoQualityMode              int                   `json:"video_quality_mode,omitempty"`
-	MessageCount                  int                   `json:"message_count,omitempty"`
-	MemberCount                   int                   `json:"member_count,omitempty"`
+	Id                            Snowflake              `json:"id"`
+	Type                          int                    `json:"type"`
+	GuildId                       Snowflake              `json:"guild_id,omitempty"`
+	Position                      int                    `json:"position,omitempty"`
+	PermissionOverwrite           []OverwriteObject      `json:"permission_overwrite"`
+	Name                          string                 `json:"name,omitempty"`
+	Topic                         string                 `json:"topic,omitempty"`
+	Nswf                          bool                   `json:"nswf,omitempty"`
+	LastMessageId                 Snowflake              `json:"last_message_id,omitempty"`
+	Bitrate                       int                    `json:"bitrate,omitempty"`
+	UserLimit                     int                    `json:"user_limit,omitempty"`
+	RateLimitPerUser              int                    `json:"rate_limit_per_user,omitempty"`
+	Recipients                    []UserObject           `json:"recipients,omitempty"`
+	Icon                          string                 `json:"icon,omitempty"`
+	OwnerId                       Snowflake              `json:"owner_id,omitempty"`
+	ApplicationId                 Snowflake              `json:"application_id,omitempty"`
+	Managed                       bool                   `json:"managed,omitempty"`
+	ParentId                      Snowflake              `json:"parent_id,omitempty"`
+	LastPinTimestamp              string                 `json:"last_pin_timestampe,omitempty"`
+	RTCRegion                     string                 `json:"rtc_region,omitempty"`
+	VideoQualityMode              int                    `json:"video_quality_mode,omitempty"`
+	MessageCount                  int                    `json:"message_count,omitempty"`
+	MemberCount                   int                    `json:"member_count,omitempty"`
 	ThreadMetadata                *ThreadMetadataObject  `json:"thread_metadata,omitempty"`
 	Member                        *ThreadMemberObject    `json:"member,omitempty"`
-	DefaultAutoArchiveDuration    int                   `json:"default_auto_archive_duration,omitempty"`
-	Permissions                   string                `json:"permissions,omitempty"`
-	Flags                         int                   `json:"flags,omitempty"`
-	TotalMessageSent              int                   `json:"totla_message_sent,omitempty"`
-	AvailableTags                 []TagObject           `json:"availble_tags,omitempty"`
-	AppliedTags                   []Snowflake           `json:"applied_tags"`
+	DefaultAutoArchiveDuration    int                    `json:"default_auto_archive_duration,omitempty"`
+	Permissions                   string                 `json:"permissions,omitempty"`
+	Flags                         int                    `json:"flags,omitempty"`
+	TotalMessageSent              int                    `json:"totla_message_sent,omitempty"`
+	AvailableTags                 []TagObject            `json:"availble_tags,omitempty"`
+	AppliedTags                   []Snowflake            `json:"applied_tags"`
 	DefaultReactionEmoji          *DefaultReactionObject `json:"default_reaction_emoji,omitempty"`
-	DefaultThreadRateLimitPerUser int                   `json:"default_thread_rate_limit_per_user,omitempty"`
-	DefaultSortOrder              int                   `json:"default_sort_order,omitempty"`
-	DefaultForumLayout            int                   `json:"default_forum_layout,omitempty"`
+	DefaultThreadRateLimitPerUser int                    `json:"default_thread_rate_limit_per_user,omitempty"`
+	DefaultSortOrder              int                    `json:"default_sort_order,omitempty"`
+	DefaultForumLayout            int                    `json:"default_forum_layout,omitempty"`
 }
 
 type OverwriteObject struct {
@@ -683,10 +683,10 @@ type ThreadMetadataObject struct {
 }
 
 type ThreadMemberObject struct {
-	Id            Snowflake         `json:"id,omitempty"`
-	UserId        Snowflake         `json:"user_id,omitempty"`
-	JoinTimestamp string            `json:"join_timestamp"`
-	Flags         int               `json:"flags"`
+	Id            Snowflake          `json:"id,omitempty"`
+	UserId        Snowflake          `json:"user_id,omitempty"`
+	JoinTimestamp string             `json:"join_timestamp"`
+	Flags         int                `json:"flags"`
 	Memberw       *GuildMemberObject `json:"member,omitempty"`
 }
 
@@ -748,12 +748,12 @@ type HelloEvent struct {
 
 type ReadyEvent struct {
 	V                int                      `json:"v"`
-	User             *UserObject               `json:"user"`
+	User             *UserObject              `json:"user"`
 	Guilds           []UnavailableGuildObject `json:"guilds"`
 	SessionId        string                   `json:"session_id"`
 	ResumeGatewayUrl string                   `json:"resume_gateway_url"`
 	Shard            []int                    `json:"shard,omitempty"`
-	Application      *ApplicationObject        `json:"application"`
+	Application      *ApplicationObject       `json:"application"`
 }
 
 type ResumeEvent struct {
@@ -763,39 +763,39 @@ type ResumeEvent struct {
 }
 
 type MessageCreateEvent struct {
-	GuildId              Snowflake                        `json:"guild_id,omitempty"`
+	GuildId              Snowflake                         `json:"guild_id,omitempty"`
 	Member               *GuildMemberObject                `json:"member,omitempty"`
-	Mentions             []UserObject                     `json:"mentions"`
-	Id                   Snowflake                        `json:"id"`
-	ChannelId            Snowflake                        `json:"channel_id"`
+	Mentions             []UserObject                      `json:"mentions"`
+	Id                   Snowflake                         `json:"id"`
+	ChannelId            Snowflake                         `json:"channel_id"`
 	Author               *UserObject                       `json:"author"`
-	Content              string                           `json:"content"`
-	Timestamp            string                           `json:"timestamp"`
-	EditedTimestamp      string                           `json:"edited_timestamp"`
-	TTS                  bool                             `json:"tts"`
-	MentionEveryone      bool                             `json:"mention_everyone"`
-	MentionRoles         []RoleObject                     `json:"mention_roles"`
-	MentionChannels      []ChannelMentionObject           `json:"mention_channels,omitempty"`
-	Attachments          []AttachmentObject               `json:"attachments"`
-	Embeds               []EmbedObject                    `json:"embeds"`
-	Reactions            []ReactionObject                 `json:"reactions"`
-	Nonce                interface{}                      `json:"nonce,omitempty"`
-	Pinned               bool                             `json:"pinned"`
-	WebhookId            Snowflake                        `json:"webhook_id,omitempty"`
-	Type                 int                              `json:"type"`
+	Content              string                            `json:"content"`
+	Timestamp            string                            `json:"timestamp"`
+	EditedTimestamp      string                            `json:"edited_timestamp"`
+	TTS                  bool                              `json:"tts"`
+	MentionEveryone      bool                              `json:"mention_everyone"`
+	MentionRoles         []RoleObject                      `json:"mention_roles"`
+	MentionChannels      []ChannelMentionObject            `json:"mention_channels,omitempty"`
+	Attachments          []AttachmentObject                `json:"attachments"`
+	Embeds               []EmbedObject                     `json:"embeds"`
+	Reactions            []ReactionObject                  `json:"reactions"`
+	Nonce                interface{}                       `json:"nonce,omitempty"`
+	Pinned               bool                              `json:"pinned"`
+	WebhookId            Snowflake                         `json:"webhook_id,omitempty"`
+	Type                 int                               `json:"type"`
 	Activity             *MessageActivityObject            `json:"activity,omitempty"`
 	Application          *ApplicationObject                `json:"application,omitempty"`
-	ApplicationId        Snowflake                        `json:"application_id,omitempty"`
+	ApplicationId        Snowflake                         `json:"application_id,omitempty"`
 	MessageReference     *MessageReferenceObject           `json:"message_reference,omitempty"`
-	Flags                int                              `json:"flags,omitempty"`
-	ReferencedMessage    *MessageObject                   `json:"referenced_message,omitempty"`
+	Flags                int                               `json:"flags,omitempty"`
+	ReferencedMessage    *MessageObject                    `json:"referenced_message,omitempty"`
 	InteractionMetadata  *MessageInteractionMetadataObject `json:"interaction_metadata,omitempty"`
 	Interaction          *MessageInteractionObject         `json:"interaction,omitempty"`
 	Thread               *ChannelObject                    `json:"thread,omitempty"`
-	Components           []MessageComponentObject         `json:"components,omitempty"`
-	StickerItems         []StickerItemObject              `json:"sticker_items,omitempty"`
-	Stickers             []StickerObject                  `json:"stickers,omitempty"`
-	Position             int                              `json:"position,omitempty"`
+	Components           []MessageComponentObject          `json:"components,omitempty"`
+	StickerItems         []StickerItemObject               `json:"sticker_items,omitempty"`
+	Stickers             []StickerObject                   `json:"stickers,omitempty"`
+	Position             int                               `json:"position,omitempty"`
 	RoleSubscriptionData *RoleSubscriptionDataObject       `json:"role_subscription_data"`
 	Resolved             *ResolvedDataObject               `json:"resolved,omitempty"`
 }
@@ -850,7 +850,6 @@ func (this Discord) CreateMessage(channelId Snowflake, payload *CreateMessagePay
 	endpoint := fmt.Sprintf("%s/channels/%s/messages", DISCORD_URL, channelId)
 
 	jsonPayload, err := json.Marshal(payload)
-	fmt.Printf("-> %s\n", jsonPayload)
 
 	if err != nil {
 		return nil, err

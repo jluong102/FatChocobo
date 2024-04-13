@@ -18,6 +18,21 @@ func StartBot(discord *Discord) {
 	}
 }
 
+func SendMessage(discord *Discord, channelId Snowflake, msg string) {
+	payload := new(CreateMessagePayload)
+	payload.Content = msg
+
+	response, err := discord.CreateMessage(channelId, payload)
+
+	if response.StatusCode != 200 {
+		log.Printf("Failed to create message: %s", response.Status)
+	} else if err != nil {
+		log.Printf("Failed to create HTTP request: %s", err)
+	} else {
+		log.Printf("Message sent to %s", channelId)
+	}
+}
+
 func handleGatewayEvent(discord *Discord, data *GatewayEventPayload) {
 	sendingHeartbeats := false
 
@@ -80,9 +95,7 @@ func handleMention(discord *Discord, event *MessageCreateEvent) {
 			SelectCommand(discord, event)
 		}
 	} else {
-		payload := new(CreateMessagePayload)
-		payload.Content = "Kweh!"
-		discord.CreateMessage(event.ChannelId, payload)
+		SendMessage(discord, event.ChannelId, "Kweh!")
 	}
 }
 
