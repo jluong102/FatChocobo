@@ -808,6 +808,23 @@ type MessageReactionAddEvent struct {
 	MessageAuthorId Snowflake         `json:"message_author_id,omitempty"`
 }
 
+// HTTP Payloads
+type CreateMessagePayload struct {
+	Content          string                   `json:"content"`
+	Nonace           interface{}              `json:"nonace,omitempty"`
+	TTS              bool                     `json:"tts,omitempty"`
+	Embeds           []EmbedObject            `json:"embeds,omitempty"`
+	AllowedMentions  AllowedMentionsObject    `json:"allowed_mentions.omitempty"`
+	MessageReference MessageReferenceObject   `json:"message_reference,omitempty"`
+	Components       []MessageComponentObject `json:"components,omitempty"`
+	StickerIds       []Snowflake              `json:"sticker_ids,omitempty"`
+	Files            interface{}              `json:"files,omitempty"`
+	PayloadJson      string                   `json:"payload_json,omitempty"`
+	Attachments      AtthachmentObject        `json:"attachments,omitempty"`
+	Flags            int                      `json:"flags,omitempty"`
+	EnforceNonce     bool                     `json:"enforce_nonce,omitempty"`
+}
+
 // HTTP Requests
 func (this Discord) GetGatewayBot() (*http.Response, error) {
 	endpoint := DISCORD_URL + "/gateway/bot"
@@ -818,11 +835,30 @@ func (this Discord) GetGatewayBot() (*http.Response, error) {
 		return nil, err
 	}
 
-	return this.MakeRequest(request)
+	return this.makeRequest(request)
+}
+
+func (this Discord) CreateMessage(channelId string, payload *CreateMessagePayload) {
+	endpoint := DISCORD_URL + fmt.Sprintf("/channels/%s/messages", channelId)
+
+	jsonPayload, err := json.Marshal(payload)
+
+	if err != nil {
+		return nil, err
+	}
+
+	request, err := http.NewRequest(http.MethodPost, endpoint, jsonPayload)
+	setJson(request)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return this.makeRequest(request)
 }
 
 // General HTTP request for discord]
-func (this Discord) MakeRequest(request *http.Request) (*http.Response, error) {
+func (this Discord) makeRequest(request *http.Request) (*http.Response, error) {
 	request.Header["Authorization"] = []string{fmt.Sprintf("Bot %s", this.token)}
 	request.Header["User-Agent"] = []string{"DiscordBot (Fat Chocobo, 0)"}
 
@@ -859,6 +895,10 @@ func (this Discord) InitGatewayHandshake(intents int) {
 	}
 
 	this.Websocket.WriteJSON(payload)
+}
+
+func setJson(request *http.Request) {
+	request.Header["Content-Type"] = []string{"application/json"}
 }
 
 // Constructor

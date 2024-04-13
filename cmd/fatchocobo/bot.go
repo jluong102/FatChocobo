@@ -1,10 +1,10 @@
 package main
 
 import (
-	"log"
-	"time"
 	"fmt"
+	"log"
 	"strings"
+	"time"
 )
 
 func StartBot(discord *Discord) {
@@ -106,5 +106,5 @@ func isMentioned(discord *Discord, event *MessageCreateEvent) bool {
 		}
 	}
 
-	return false 
+	return false
 }
