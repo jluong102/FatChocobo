@@ -764,7 +764,6 @@ type MessageEvent struct {
 	EditedTimestamp      string                           `json:"edited_timestamp"`
 	TTS                  bool                             `json:"tts"`
 	MentionEveryone      bool                             `json:"mention_everyone"`
-	Mentions             []UserObject                     `json:"mentions"`
 	MentionRoles         []RoleObject                     `json:"mention_roles"`
 	MentionChannels      []ChannelMentionObject           `json:"mention_channels,omitempty"`
 	Attachments          []AttachmentObject               `json:"attachments"`
