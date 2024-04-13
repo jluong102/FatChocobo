@@ -796,6 +796,16 @@ type MessageDeleteEvent struct {
 	GuildId   Snowflake `json:"guild_id"`
 }
 
+type MessageReactionAddEvent struct {
+	UserId          Snowflake         `json:"user_id"`
+	ChannelId       Snowflake         `json:"channel_id"`
+	MessageId       Snowflake         `json:"message_id"`
+	GuildId         Snowflake         `json:"guild_id"`
+	Member          GuildMemberObject `json:"member,omitempty"`
+	Emoji           EmojiObject       `json:"emoji"`
+	MessageAuthorId Snowflake         `json:"message_author_id,omitempty"`
+}
+
 // HTTP Requests
 func (this Discord) GetGatewayBot() (*http.Response, error) {
 	endpoint := DISCORD_URL + "/gateway/bot"
