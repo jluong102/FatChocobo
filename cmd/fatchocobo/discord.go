@@ -790,6 +790,12 @@ type MessageEvent struct {
 	Resolved             ResolvedDataObject               `json:"resolved,omitempty"`
 }
 
+type MessageDeleteEvent struct {
+	Id        Snowflake `json:"id"`
+	ChannelId Snowflake `json:"channel_id"`
+	GuildId   Snowflake `json:"guild_id"`
+}
+
 // HTTP Requests
 func (this Discord) GetGatewayBot() (*http.Response, error) {
 	endpoint := DISCORD_URL + "/gateway/bot"
