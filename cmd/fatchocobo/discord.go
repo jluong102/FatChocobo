@@ -769,7 +769,7 @@ type MessageEvent struct {
 	Attachments          []AttachmentObject               `json:"attachments"`
 	Embeds               []EmbedObject                    `json:"embeds"`
 	Reactions            []ReactionObject                 `json:"reactions"`
-	Nonce                int                              `json:"nonce,omitempty"`
+	Nonce                interface{}                      `json:"nonce,omitempty"`
 	Pinned               bool                             `json:"pinned"`
 	WebhookId            Snowflake                        `json:"webhook_id,omitempty"`
 	Type                 int                              `json:"type"`
