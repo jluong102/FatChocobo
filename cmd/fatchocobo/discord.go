@@ -753,9 +753,42 @@ type ResumeEvent struct {
 }
 
 type MessageEvent struct {
-	GuildId Snowflake `json:"guild_id,omitempty"`
-	Member GuildMemberObject `json:"member,omitempty"`
-	Mentions []UserObject `json:"mentions"`
+	GuildId              Snowflake                        `json:"guild_id,omitempty"`
+	Member               GuildMemberObject                `json:"member,omitempty"`
+	Mentions             []UserObject                     `json:"mentions"`
+	Id                   Snowflake                        `json:"id"`
+	ChannelId            Snowflake                        `json:"channel_id"`
+	Author               UserObject                       `json:"author"`
+	Content              string                           `json:"content"`
+	Timestamp            string                           `json:"timestamp"`
+	EditedTimestamp      string                           `json:"edited_timestamp"`
+	TTS                  bool                             `json:"tts"`
+	MentionEveryone      bool                             `json:"mention_everyone"`
+	Mentions             []UserObject                     `json:"mentions"`
+	MentionRoles         []RoleObject                     `json:"mention_roles"`
+	MentionChannels      []ChannelMentionObject           `json:"mention_channels,omitempty"`
+	Attachments          []AttachmentObject               `json:"attachments"`
+	Embeds               []EmbedObject                    `json:"embeds"`
+	Reactions            []ReactionObject                 `json:"reactions"`
+	Nonce                int                              `json:"nonce,omitempty"`
+	Pinned               bool                             `json:"pinned"`
+	WebhookId            Snowflake                        `json:"webhook_id,omitempty"`
+	Type                 int                              `json:"type"`
+	Activity             MessageActivityObject            `json:"activity,omitempty"`
+	Application          ApplicationObject                `json:"application,omitempty"`
+	ApplicationId        Snowflake                        `json:"application_id,omitempty"`
+	MessageReference     MessageReferenceObject           `json:"message_reference,omitempty"`
+	Flags                int                              `json:"flags,omitempty"`
+	ReferencedMessage    *MessageObject                   `json:"referenced_message,omitempty"`
+	InteractionMetadata  MessageInteractionMetadataObject `json:"interaction_metadata,omitempty"`
+	Interaction          MessageInteractionObject         `json:"interaction,omitempty"`
+	Thread               ChannelObject                    `json:"thread,omitempty"`
+	Components           []MessageComponentObject         `json:"components,omitempty"`
+	StickerItems         []StickerItemObject              `json:"sticker_items,omitempty"`
+	Stickers             []StickerObject                  `json:"stickers,omitempty"`
+	Position             int                              `json:"position,omitempty"`
+	RoleSubscriptionData RoleSubscriptionDataObject       `json:"role_subscription_data"`
+	Resolved             ResolvedDataObject               `json:"resolved,omitempty"`
 }
 
 // HTTP Requests

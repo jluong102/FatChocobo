@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
-	"os"
 	"net/http"
+	"os"
 )
 
 import (
@@ -25,7 +25,7 @@ func ListenWebsocket(ws *websocket.Conn, output chan<- *GatewayEventPayload) {
 			log.Printf("Trouble reading from websocket\n\tError: %s", err)
 			os.Exit(WEBSOCKET_READ_ERROR)
 		}
-		
+
 		output <- data
 	}
 }
