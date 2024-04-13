@@ -40,22 +40,30 @@ func handleGatewayEvent(discord *Discord, data *GatewayEventPayload) {
 		log.Printf("Heartbeat acknowledged")
 	case GATEWAY_OPCODE_DISPATCH:
 		log.Printf("Dispatch event received")
-		handleDispatch(data)
+		handleDispatch(discord, data)
 	default:
 		log.Printf("Unknown Opcode: %d", data.Op)
 	}
 }
 
-func handleDispatch(data *GatewayEventPayload) {
+func handleDispatch(discord *Discord, data *GatewayEventPayload) {
 	log.Printf("Dispatch type %s", data.T)
 
 	switch data.T {
 	case "READY":
-		ParseOpReadyEvent(data.D)
+		event := ParseOpReadyEvent(data.D)
+		setBotInfo(discord, event)
 	case "MESSAGE_CREATE":
-		ParseOpMessageCreateEvent(data.D)
+		event := ParseOpMessageCreateEvent(data.D)
+		handleMessage(discord, event)
 	default:
 		log.Printf("Unhandled dispatch type %s", data.T)
+	}
+}
+
+func handleMessage(discord *Discord, event *MessageCreateEvent) {
+	if len(event.Mentions) < 1 {
+		return
 	}
 }
 
@@ -67,4 +75,9 @@ func sendEndlessHeartbeats(discord *Discord, seq int) {
 		discord.SendHeartbeat(seq)
 		time.Sleep(time.Duration(discord.Heartbeat)*time.Millisecond - 100)
 	}
+}
+
+func setBotInfo(discord *Discord, event *ReadyEvent) {
+	discord.BotId = event.User.Id
+	discord.Username = event.User.Username
 }

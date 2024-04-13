@@ -56,7 +56,7 @@ func ParseOpReadyEvent(data interface{}) *ReadyEvent {
 	return output
 }
 
-func ParseOpMessageCreateEvent(data interface{}) *MessageEvent {
+func ParseOpMessageCreateEvent(data interface{}) *MessageCreateEvent {
 	encoded, err := json.Marshal(data)
 
 	if err != nil {
@@ -64,7 +64,7 @@ func ParseOpMessageCreateEvent(data interface{}) *MessageEvent {
 		return nil
 	}
 
-	output := new(MessageEvent)
+	output := new(MessageCreateEvent)
 	err = json.Unmarshal(encoded, output)
 
 	if err != nil {

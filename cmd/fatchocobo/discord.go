@@ -159,6 +159,8 @@ const (
 type Discord struct {
 	Websocket *websocket.Conn
 	Heartbeat int
+	BotId     Snowflake
+	Username  string
 	token     string
 }
 
@@ -752,7 +754,7 @@ type ResumeEvent struct {
 	Seq       int    `json:"seq"`
 }
 
-type MessageEvent struct {
+type MessageCreateEvent struct {
 	GuildId              Snowflake                        `json:"guild_id,omitempty"`
 	Member               GuildMemberObject                `json:"member,omitempty"`
 	Mentions             []UserObject                     `json:"mentions"`
