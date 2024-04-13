@@ -80,7 +80,9 @@ func handleMention(discord *Discord, event *MessageCreateEvent) {
 			SelectCommand(discord, event)
 		}
 	} else {
-		log.Printf("Not first")
+		payload := new(CreateMessagePayload)
+		payload.Content = "Kweh"
+		discord.CreateMessage(event.ChannelId, payload)
 	}
 }
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -733,22 +734,6 @@ type AllowedMentionsObject struct {
 	RepliedUser bool        `json:"replied_user"`
 }
 
-type AttachmentObject struct {
-	Id           Snowflake `json:"id"`
-	Filename     string    `json:"filename"`
-	Description  string    `json:"description,omitempty"`
-	ContentType  string    `json:"content_type,omitempty"`
-	Size         int       `json:"size"`
-	Url          string    `json:"url"`
-	ProxyUrl     string    `json:"proxy_url"`
-	Height       int       `json:"height,omitempty"`
-	Width        int       `json:"width,omitempty"`
-	Ephemeral    bool      `json:"ephemeral,omitempty"`
-	DurationSecs float32   `json:"duration_secs,omitempty"`
-	Waveform     string    `json:"waveform,omitempty"`
-	Flags        int       `json:"flags"`
-}
-
 // Gateway stuff
 type GatewayEventPayload struct {
 	Op int         `json:"op"` // Gateway Opcode
@@ -822,28 +807,28 @@ type MessageDeleteEvent struct {
 }
 
 type MessageReactionAddEvent struct {
-	UserId          Snowflake         `json:"user_id"`
-	ChannelId       Snowflake         `json:"channel_id"`
-	MessageId       Snowflake         `json:"message_id"`
-	GuildId         Snowflake         `json:"guild_id"`
-	Member          GuildMemberObject `json:"member,omitempty"`
-	Emoji           EmojiObject       `json:"emoji"`
-	MessageAuthorId Snowflake         `json:"message_author_id,omitempty"`
+	UserId          Snowflake          `json:"user_id"`
+	ChannelId       Snowflake          `json:"channel_id"`
+	MessageId       Snowflake          `json:"message_id"`
+	GuildId         Snowflake          `json:"guild_id"`
+	Member          *GuildMemberObject `json:"member,omitempty"`
+	Emoji           *EmojiObject       `json:"emoji"`
+	MessageAuthorId Snowflake          `json:"message_author_id,omitempty"`
 }
 
 // HTTP Payloads
 type CreateMessagePayload struct {
-	Content          string                   `json:"content"`
+	Content          string                   `json:"content,omitempty"`
 	Nonace           interface{}              `json:"nonace,omitempty"`
 	TTS              bool                     `json:"tts,omitempty"`
 	Embeds           []EmbedObject            `json:"embeds,omitempty"`
-	AllowedMentions  AllowedMentionsObject    `json:"allowed_mentions.omitempty"`
-	MessageReference MessageReferenceObject   `json:"message_reference,omitempty"`
+	AllowedMentions  *AllowedMentionsObject   `json:"allowed_mentions,omitempty"`
+	MessageReference *MessageReferenceObject  `json:"message_reference,omitempty"`
 	Components       []MessageComponentObject `json:"components,omitempty"`
 	StickerIds       []Snowflake              `json:"sticker_ids,omitempty"`
 	Files            interface{}              `json:"files,omitempty"`
 	PayloadJson      string                   `json:"payload_json,omitempty"`
-	Attachments      AtthachmentObject        `json:"attachments,omitempty"`
+	Attachments      *AttachmentObject        `json:"attachments,omitempty"`
 	Flags            int                      `json:"flags,omitempty"`
 	EnforceNonce     bool                     `json:"enforce_nonce,omitempty"`
 }
@@ -861,17 +846,18 @@ func (this Discord) GetGatewayBot() (*http.Response, error) {
 	return this.makeRequest(request)
 }
 
-func (this Discord) CreateMessage(channelId string, payload *CreateMessagePayload) {
-	endpoint := DISCORD_URL + fmt.Sprintf("/channels/%s/messages", channelId)
+func (this Discord) CreateMessage(channelId Snowflake, payload *CreateMessagePayload) (*http.Response, error) {
+	endpoint := fmt.Sprintf("%s/channels/%s/messages", DISCORD_URL, channelId)
 
 	jsonPayload, err := json.Marshal(payload)
+	fmt.Printf("-> %s\n", jsonPayload)
 
 	if err != nil {
 		return nil, err
 	}
 
-	request, err := http.NewRequest(http.MethodPost, endpoint, jsonPayload)
-	setJson(request)
+	request, err := http.NewRequest(http.MethodPost, endpoint, bytes.NewBuffer(jsonPayload))
+	this.setJson(request)
 
 	if err != nil {
 		return nil, err
@@ -920,7 +906,7 @@ func (this Discord) InitGatewayHandshake(intents int) {
 	this.Websocket.WriteJSON(payload)
 }
 
-func setJson(request *http.Request) {
+func (this Discord) setJson(request *http.Request) {
 	request.Header["Content-Type"] = []string{"application/json"}
 }
 
