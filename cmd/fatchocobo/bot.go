@@ -77,7 +77,7 @@ func handleMention(discord *Discord, event *MessageCreateEvent) {
 		if len(text) == 1 {
 			log.Printf("Kweh")
 		} else {
-			log.Printf("No command found in mention")
+			SelectCommand(discord, event)
 		}
 	} else {
 		log.Printf("Not first")
