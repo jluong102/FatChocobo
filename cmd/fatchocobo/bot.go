@@ -81,7 +81,7 @@ func handleMention(discord *Discord, event *MessageCreateEvent) {
 		}
 	} else {
 		payload := new(CreateMessagePayload)
-		payload.Content = "Kweh"
+		payload.Content = "Kweh!"
 		discord.CreateMessage(event.ChannelId, payload)
 	}
 }
