@@ -40,15 +40,7 @@ func handleGatewayEvent(discord *Discord, data *GatewayEventPayload) {
 		log.Printf("Heartbeat acknowledged")
 	case GATEWAY_OPCODE_DISPATCH:
 		log.Printf("Dispatch event")
-		payload := ParseOpReadyEvent(data.D)
-
-		log.Printf("v -> %d", payload.V)
-		log.Printf("User -> %v", payload.User)
-		log.Printf("Guilds -> %v", payload.Guilds)
-		log.Printf("Session ID -> %s", payload.SessionId)
-		log.Printf("Resume Gateway Url -> %s", payload.ResumeGatewayUrl)
-		log.Printf("Shard -> %d", payload.Shard)
-		log.Printf("Application -> %v", payload.Application)
+		ParseOpReadyEvent(data.D)
 	default:
 		log.Printf("Unknown Opcode: %d", data.Op)
 	}

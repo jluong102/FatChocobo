@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"net/http"
 )
 
@@ -22,8 +23,9 @@ func ListenWebsocket(ws *websocket.Conn, output chan<- *GatewayEventPayload) {
 	for {
 		if err := ws.ReadJSON(data); err != nil {
 			log.Printf("Trouble reading from websocket\n\tError: %s", err)
+			os.Exit(WEBSOCKET_READ_ERROR)
 		}
-
+		
 		output <- data
 	}
 }

@@ -8,4 +8,5 @@ const (
 	MISSING_SETTING            = 4
 	GATEWAY_ERROR              = 5
 	WEBSOCKET_CONNECTION_ERROR = 6
+	WEBSOCKET_READ_ERROR       = 7
 )
