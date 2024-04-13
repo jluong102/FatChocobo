@@ -41,7 +41,6 @@ func handleGatewayEvent(discord *Discord, data *GatewayEventPayload) {
 	case GATEWAY_OPCODE_DISPATCH:
 		log.Printf("Dispatch event")
 		handleDispatch(data)
-		ParseOpReadyEvent(data.D)
 	default:
 		log.Printf("Unknown Opcode: %d", data.Op)
 	}
@@ -54,7 +53,7 @@ func handleDispatch(data *GatewayEventPayload) {
 	case "MESSAGE_CREATE":
 		ParseOpMessageCreateEvent(data.D)
 	default:
-		log.Printf("Unknown dispatch type %s", data.T)
+		log.Printf("Unhandled dispatch type %s", data.T)
 	}
 }
 
