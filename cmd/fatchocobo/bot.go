@@ -39,7 +39,7 @@ func handleGatewayEvent(discord *Discord, data *GatewayEventPayload) {
 	case GATEWAY_OPCODE_HEARTBEAT_ACK:
 		log.Printf("Heartbeat acknowledged")
 	case GATEWAY_OPCODE_DISPATCH:
-		log.Printf("Dispatch event")
+		log.Printf("Dispatch event received")
 		handleDispatch(data)
 	default:
 		log.Printf("Unknown Opcode: %d", data.Op)
@@ -47,6 +47,8 @@ func handleGatewayEvent(discord *Discord, data *GatewayEventPayload) {
 }
 
 func handleDispatch(data *GatewayEventPayload) {
+	log.Printf("Dispatch type %s", data.T)
+
 	switch data.T {
 	case "READY":
 		ParseOpReadyEvent(data.D)
