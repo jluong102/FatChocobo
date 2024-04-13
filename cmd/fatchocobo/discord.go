@@ -752,6 +752,12 @@ type ResumeEvent struct {
 	Seq       int    `json:"seq"`
 }
 
+type MessageEvent struct {
+	GuildId Snowflake `json:"guild_id,omitempty"`
+	Member GuildMemberObject `json:"member,omitempty"`
+	Mentions []UserObject `json:"mentions"`
+}
+
 // HTTP Requests
 func (this Discord) GetGatewayBot() (*http.Response, error) {
 	endpoint := DISCORD_URL + "/gateway/bot"
