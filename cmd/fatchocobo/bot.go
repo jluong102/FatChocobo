@@ -62,8 +62,8 @@ func handleDispatch(discord *Discord, data *GatewayEventPayload) {
 }
 
 func handleMessage(discord *Discord, event *MessageCreateEvent) {
-	if len(event.Mentions) < 1 {
-		return
+	if isMentioned(discord, event) {
+		log.Printf("Mention found")
 	}
 }
 
@@ -80,4 +80,14 @@ func sendEndlessHeartbeats(discord *Discord, seq int) {
 func setBotInfo(discord *Discord, event *ReadyEvent) {
 	discord.BotId = event.User.Id
 	discord.Username = event.User.Username
+}
+
+func isMentioned(discord *Discord, event *MessageCreateEvent) bool {
+	for _, i := range event.Mentions {
+		if i.Id == discord.BotId {
+			return true
+		}
+	}
+
+	return false 
 }
