@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 	"time"
+	"fmt"
+	"strings"
 )
 
 func StartBot(discord *Discord) {
@@ -55,15 +57,30 @@ func handleDispatch(discord *Discord, data *GatewayEventPayload) {
 		setBotInfo(discord, event)
 	case "MESSAGE_CREATE":
 		event := ParseOpMessageCreateEvent(data.D)
-		handleMessage(discord, event)
+		handleMessageCreate(discord, event)
 	default:
 		log.Printf("Unhandled dispatch type %s", data.T)
 	}
 }
 
-func handleMessage(discord *Discord, event *MessageCreateEvent) {
+func handleMessageCreate(discord *Discord, event *MessageCreateEvent) {
 	if isMentioned(discord, event) {
-		log.Printf("Mention found")
+		log.Printf("Mention found in %s", event.GuildId)
+		handleMention(discord, event)
+	}
+}
+
+func handleMention(discord *Discord, event *MessageCreateEvent) {
+	text := strings.Split(event.Content, " ")
+
+	if text[0] == fmt.Sprintf("<@%s>", discord.BotId) {
+		if len(text) == 1 {
+			log.Printf("Kweh")
+		} else {
+			log.Printf("No command found in mention")
+		}
+	} else {
+		log.Printf("Not first")
 	}
 }
 
