@@ -856,7 +856,7 @@ func (this Discord) CreateMessage(channelId Snowflake, payload *CreateMessagePay
 	}
 
 	request, err := http.NewRequest(http.MethodPost, endpoint, bytes.NewBuffer(jsonPayload))
-	this.setJson(request)
+	SetJson(request)
 
 	if err != nil {
 		return nil, err
@@ -903,10 +903,6 @@ func (this Discord) InitGatewayHandshake(intents int) {
 	}
 
 	this.Websocket.WriteJSON(payload)
-}
-
-func (this Discord) setJson(request *http.Request) {
-	request.Header["Content-Type"] = []string{"application/json"}
 }
 
 // Constructor
