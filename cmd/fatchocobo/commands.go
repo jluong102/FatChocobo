@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"strings"
 )
@@ -34,7 +35,8 @@ func runHelldive(discord *Discord, event *MessageCreateEvent, text []string) {
 	case "PLANETS":
 		if len(text) == 3 {
 			listHelldivers2Planets(discord, event)
-		} else if len(text) == 4 {
+		} else if len(text) > 3 {
+			planet := strings.Join(text[3:], " ")
 			listHelldivers2PlanetInfo(discord, event, planet)
 		}
 	default:
@@ -50,5 +52,31 @@ func listHelldivers2Planets(discord *Discord, event *MessageCreateEvent) {
 		msg += i + "\n"
 	}
 
+	SendMessage(discord, event.ChannelId, msg)
+}
+
+func listHelldivers2PlanetInfo(discord *Discord, event *MessageCreateEvent, planet string) {
+	info := GetWarCampaignResponse()
+	log.Printf(planet)
+
+	for _, i := range *info {
+		if strings.ToUpper(i.Name) == strings.ToUpper(planet) {
+			msg := "```"
+			msg += fmt.Sprintf("Name: %s\n", i.Name)
+			msg += fmt.Sprintf("Faction: %s\n", i.Faction)
+			msg += fmt.Sprintf("Players: %d\n", i.Players)
+			msg += fmt.Sprintf("Health: %d/%d (%f)\n", i.Health, i.MaxHealth, i.Percentage)
+			msg += fmt.Sprintf("Defense: %t\n", i.Defense)
+			msg += fmt.Sprintf("Major Order: %t\n", i.MajorOrder)
+			msg += fmt.Sprintf("Biome: %s\n", i.Biome.Slug)
+			msg += fmt.Sprintf("```")
+
+			SendMessage(discord, event.ChannelId, msg)
+			return
+		}
+	}
+
+	msg := fmt.Sprintf("Planet not found: %s", planet)
+	log.Printf("%s", msg)
 	SendMessage(discord, event.ChannelId, msg)
 }
