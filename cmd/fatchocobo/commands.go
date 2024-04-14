@@ -6,9 +6,7 @@ import (
 	"strings"
 )
 
-func SelectCommand(discord *Discord, event *MessageCreateEvent) {
-	text := strings.Split(event.Content, " ")
-
+func SelectCommand(discord *Discord, event *MessageCreateEvent, text []string) {
 	switch strings.ToUpper(text[1]) {
 	case "HELP":
 		log.Printf("Command help")
@@ -57,7 +55,6 @@ func listHelldivers2Planets(discord *Discord, event *MessageCreateEvent) {
 
 func listHelldivers2PlanetInfo(discord *Discord, event *MessageCreateEvent, planet string) {
 	info := GetWarCampaignResponse()
-	log.Printf(planet)
 
 	for _, i := range *info {
 		if strings.ToUpper(i.Name) == strings.ToUpper(planet) {
@@ -69,7 +66,7 @@ func listHelldivers2PlanetInfo(discord *Discord, event *MessageCreateEvent, plan
 			msg += fmt.Sprintf("Defense: %t\n", i.Defense)
 			msg += fmt.Sprintf("Major Order: %t\n", i.MajorOrder)
 			msg += fmt.Sprintf("Biome: %s\n", i.Biome.Slug)
-			msg += fmt.Sprintf("```")
+			msg += "```"
 
 			SendMessage(discord, event.ChannelId, msg)
 			return

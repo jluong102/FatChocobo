@@ -774,7 +774,7 @@ type MessageCreateEvent struct {
 	EditedTimestamp      string                            `json:"edited_timestamp"`
 	TTS                  bool                              `json:"tts"`
 	MentionEveryone      bool                              `json:"mention_everyone"`
-	MentionRoles         []RoleObject                      `json:"mention_roles"`
+	MentionRoles         []Snowflake                       `json:"mention_roles"`
 	MentionChannels      []ChannelMentionObject            `json:"mention_channels,omitempty"`
 	Attachments          []AttachmentObject                `json:"attachments"`
 	Embeds               []EmbedObject                     `json:"embeds"`

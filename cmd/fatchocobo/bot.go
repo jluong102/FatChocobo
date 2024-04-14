@@ -92,7 +92,7 @@ func handleMention(discord *Discord, event *MessageCreateEvent) {
 		if len(text) == 1 {
 			log.Printf("Kweh")
 		} else {
-			SelectCommand(discord, event)
+			SelectCommand(discord, event, text)
 		}
 	} else {
 		SendMessage(discord, event.ChannelId, "Kweh!")
