@@ -11,3 +11,7 @@ debug:
 	go build \
 		-ldflags="-X 'main.VERSION=${VERSION}-debug' -X 'main.BUILD_DATE=${BUILD_DATE}'" \
 		-o ${BIN}-debug ./cmd/${BIN}/*.go
+docker:
+	sudo docker build -t fatchocobo .
+clean:
+	sudo docker image rm fatchocobo
