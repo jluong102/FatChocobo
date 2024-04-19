@@ -12,6 +12,6 @@ debug:
 		-ldflags="-X 'main.VERSION=${VERSION}-debug' -X 'main.BUILD_DATE=${BUILD_DATE}'" \
 		-o ${BIN}-debug ./cmd/${BIN}/*.go
 docker:
-	sudo docker build -t fatchocobo .
+	sudo docker build -t localhost/fatchocobo .
 clean:
-	sudo docker image rm fatchocobo
+	sudo docker image rm localhost/fatchocobo
