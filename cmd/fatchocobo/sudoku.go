@@ -37,9 +37,9 @@ func parseBoard(board *sudoku.Board) string {
 		}
 
 		msg += "|\n"
+		msg += "+-+-+-+-+-+-+-+-+-+\n"
 	}
 
-	msg += "+-+-+-+-+-+-+-+-+-+\n"
 	msg += "```"
 
 	return msg
