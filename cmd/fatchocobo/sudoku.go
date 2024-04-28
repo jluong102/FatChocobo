@@ -33,10 +33,10 @@ func parseBoard(board *sudoku.Board) string {
 
 	for _, i := range board.NewBoard.Grids[0].Value {
 		for _, j := range i {
-			msg += fmt.Sprintf("|%s", j)
+			msg += fmt.Sprintf("|%d", j)
 		}
 
-		msg += "|"
+		msg += "|\n"
 	}
 
 	msg += "+-+-+-+-+-+-+-+-+-+\n"
