@@ -21,13 +21,17 @@ type Board struct {
 }
 
 func GetBoard() (*http.Response, error) {
-	request := http.NewRequest(http.MethodGet, SUDOKU_URL, nil)
+	request, err := http.NewRequest(http.MethodGet, SUDOKU_URL, nil)
+
+	if err != nil {
+		return nil, err
+	}
 
 	client := http.Client{}
 	return client.Do(request)
 }
 
-func ParseBoardResponse(request *http.Response) (*board, error) {
+func ParseBoardResponse(request *http.Response) (*Board, error) {
 	board := new(Board)
 
 	raw, err := io.ReadAll(request.Body)
