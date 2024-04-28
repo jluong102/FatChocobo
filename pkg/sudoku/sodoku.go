@@ -2,8 +2,8 @@ package sudoku
 
 import (
 	"encoding/json"
-	"net/http"
 	"io"
+	"net/http"
 )
 
 const SUDOKU_URL string = "https://sudoku-api.vercel.app/api/dosuku"
@@ -35,7 +35,7 @@ func ParseBoardResponse(request *http.Response) (*Board, error) {
 	board := new(Board)
 
 	raw, err := io.ReadAll(request.Body)
-	defer request.Body.Close()	
+	defer request.Body.Close()
 
 	if err != nil {
 		return nil, err
@@ -43,5 +43,5 @@ func ParseBoardResponse(request *http.Response) (*Board, error) {
 
 	err = json.Unmarshal(raw, board)
 
-	return board, err	
+	return board, err
 }
