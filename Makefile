@@ -1,6 +1,7 @@
 VERSION="v0.0.0"
 BUILD_DATE=$(shell date +%F)
-BIN="fatchocobo"
+BIN=fatchocobo
+PKG_SUDOKU=sudoku
 LD_FLAGS="-s"
 
 build:
@@ -12,6 +13,9 @@ debug:
 		-ldflags="-X 'main.VERSION=${VERSION}-debug' -X 'main.BUILD_DATE=${BUILD_DATE}'" \
 		-o ${BIN}-debug ./cmd/${BIN}/*.go
 docker:
-	sudo docker build -t localhost/fatchocobo .
+	sudo docker build -t fatchocobo .
 clean:
-	sudo docker image rm localhost/fatchocobo
+	sudo docker image rm fatchocobo
+check:
+	go fmt ./cmd/${BIN}/*.go
+	go fmt ./pkg/${PKG_SUDOKU}/*.go
