@@ -16,6 +16,7 @@ func SelectCommand(discord *Discord, event *MessageCreateEvent, text []string) {
 		runHelldive(discord, event, text)
 	case "SUDOKU":
 		log.Printf("Command Sudoku")
+		runSudoku(discord, event, text)
 	default:
 		log.Printf("No command found in mention")
 	}
@@ -82,5 +83,11 @@ func listHelldivers2PlanetInfo(discord *Discord, event *MessageCreateEvent, plan
 
 	msg := fmt.Sprintf("Planet not found: %s", planet)
 	log.Printf("%s", msg)
+	SendMessage(discord, event.ChannelId, msg)
+}
+
+func runSudoku(discord *Discord, event *MessageCreateEvent, text []string) {
+	msg := GetSudokuBoard()
+
 	SendMessage(discord, event.ChannelId, msg)
 }

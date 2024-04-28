@@ -9,7 +9,7 @@ import (
 const SUDOKU_URL string = "https://sudoku-api.vercel.app/api/dosuku"
 
 type Board struct {
-	Newboard struct {
+	NewBoard struct {
 		Grids []struct {
 			Value      [][]int `json:"value"`
 			Solution   [][]int `json:"solution"`
