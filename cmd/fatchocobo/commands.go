@@ -14,13 +14,20 @@ func SelectCommand(discord *Discord, event *MessageCreateEvent, text []string) {
 	case "HELLDIVE":
 		log.Printf("Command Helldive")
 		runHelldive(discord, event, text)
+	case "SUDOKU":
+		log.Printf("Command Sudoku")
 	default:
 		log.Printf("No command found in mention")
 	}
 }
 
 func runHelp(discord *Discord, event *MessageCreateEvent) {
+	msg := "```\n"
+	msg += "HELLDIVE\n"
+	msg += "-> PLANETS <planet_name|OPTIONAL>\n"
+	msg += "```"
 
+	SendMessage(discord, event.ChannelId, msg)
 }
 
 func runHelldive(discord *Discord, event *MessageCreateEvent, text []string) {
