@@ -1,4 +1,4 @@
-module github.com/jluong01/fatchocobo
+module github.com/jluong102/fatchocobo
 
 go 1.19
 

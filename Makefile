@@ -1,8 +1,8 @@
-VERSION="v0.0.0"
+VERSION=v0.0.1
 BUILD_DATE=$(shell date +%F)
 BIN=fatchocobo
 PKG_SUDOKU=sudoku
-LD_FLAGS="-s"
+LD_FLAGS=-s
 
 build:
 	go build \
